@@ -1,0 +1,3679 @@
+/* =====================================================
+   REDACTED CLASSIC CAVIAR CSS
+   =====================================================
+   
+   This is a hybrid CSS file combining:
+   - REDStage.css (Redacted's dark theme) - STRUCTURE & LAYOUT
+   - Classic Caviar (BTN's dark theme) - COLORS ONLY
+   
+   Purpose: Port Classic Caviar's dark color scheme
+            to Redacted's REDStage layout structure
+   
+   Key Color Palette:
+   - Background: #1a1a1a
+   - Box/Dark Grey: #212121
+   - Lighter Grey: #333333
+   - Accent Grey: #4d4d4d
+   - Link Grey: #969696
+   - Link Hover: #70d9ff (cyan)
+   - Text: #d9d9d9
+   - Menu Gradient: #333333 ? #666666 (12 steps)
+   
+   TROUBLESOME AREAS (Search by number for details):
+   #1  - Column Headers: White text visibility on blue
+   #2  - Edition Info: Text readability on blue backgrounds
+   #3  - Menu Gradient: Extended from 10 to 12 steps
+   #4  - Tag Styling: White text on blue ovals across all pages
+   #5  - Pagination: Hover effects with spacing refinements
+   #6  - Sort Icons: Red PNG to white using CSS filter
+   #7  - API Keys: Input field alignment on Settings page
+   #8  - Form Labels: Vertical centering with flexbox
+   #9  - Badge Log: Alternating row colors for readability
+   #10 - DNU Table: Dark header with white text, alternating rows
+   #11 - Staff Link: Persistent background override attempts
+   #12 - Nav Hovers: Padding shift issues (horizontal-only for menu)
+   #13 - Request Fill Form: Label/input alignment, helper text positioning
+   
+   Notes:
+   - All HTML files use &#169; entity for copyright symbol
+   - CSS distributed to all page subdirectories (*_files folders)
+   - Multiple iterations on spacing (pagination: 6px?4px?3px)
+   - Staff link background still persists on some pages
+   
+   ===================================================== */
+
+@namespace "http://www.w3.org/1999/xhtml";
+@namespace svg "http://www.w3.org/2000/svg";
+
+:root {
+    --system-ui: system-ui, "Segoe UI", "Roboto", "Ubuntu", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --monospace-ui: "Cascadia Code", "Consolas", "Ubuntu Mono", "Fira Code", "Menlo", "Liberation Mono", "Monaco", monospace
+}
+
+.tooltipster-default .tooltipster-content, body, button, h1, h2, h3, h4, h5, h6, input, select, textarea {
+    font-family: var(--system-ui)
+}
+
+code, pre {
+    font-family: var(--monospace-ui);
+    font-optical-sizing: auto;
+    font-variant-ligatures: no-contextual
+}
+
+* {
+    box-sizing: inherit
+}
+
+body {
+    background-color: #1a1a1a;
+    box-sizing: border-box;
+    color: #d9d9d9;
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 0 8px
+}
+
+code, pre {
+    color: #4a4a4a
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #d9d9d9;
+    line-height: normal;
+    margin: 8px 0;
+    max-width: 100%
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    color: #4d4d4d
+}
+
+h1, h2 {
+    font-size: 23px
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600
+}
+
+h3, h4 {
+    font-size: 18px
+}
+
+h4, h5 {
+    font-size: 16px;
+    font-weight: 600
+}
+
+a {
+    color: #969696;
+    text-decoration: none
+}
+
+a:hover {
+    color: #969696
+}
+
+a:active, a:focus, button:active, button:focus, input:active, input:focus, select:active, select:focus, textarea:active, textarea:focus {
+    outline: 0
+}
+
+.body .box.pad:not(#reply_box), .box .box.pad, .main_column .box.pad:not(#reply_box) {
+    background-color: rgba(110.7, 149, 169, .15);
+    border: 2px solid #b0b3b3;
+    margin: 8px;
+    border-radius: .25rem
+}
+
+#content>.thin:not(:has(table)), .box, .box2, .main_column:not(:has(table)), .sidebar, body#user .main_column {
+    overflow: hidden
+}
+
+.clear:after, .profileinfo:before {
+    content: ""
+}
+
+#menu>ul a, .nobr {
+    white-space: nowrap
+}
+
+#covers .stats .remove, .add_bookmark, .sidebar {
+    float: right
+}
+
+#header ul, .poll {
+    list-style: none
+}
+
+.body img, .box_request_desc:not(.head) img, .comment:not(.head) img, .news_post:not(.head) img, .profileinfo:not(.head) img, .wiki_article img {
+    vertical-align: middle
+}
+
+svg|a {
+    fill: #969696
+}
+
+svg|a:hover {
+    fill: #969696
+}
+
+b, strong {
+    color: #d9d9d9;
+    font-weight: 600
+}
+
+ol, ul {
+    margin: 12px;
+    padding-left: 16px
+}
+
+ol.nobullet, ul.nobullet {
+    list-style-type: none
+}
+
+li {
+    margin-bottom: 4px
+}
+
+li:last-child {
+    margin-bottom: 0
+}
+
+blockquote {
+    background-color: rgba(110.7, 149, 169, .15);
+    border: 1px dashed #b0b3b3;
+    margin: 12px;
+    padding: 12px
+}
+
+::selection {
+    background-color: #4d4d4d;
+    color: #d9d9d9
+}
+
+table {
+    background-color: #212121
+}
+
+table .rowa, table .rowb {
+    border-top: 2px solid rgba(45, 57, 58, .3294117647)
+}
+
+#upload tr:nth-child(2n), table .rowa:nth-child(2n), table .rowb:nth-child(2n) {
+    background-color: #2a2a2a
+}
+
+table {
+    border-collapse: collapse;
+    margin: 8px 0;
+    width: 100%
+}
+
+#upload tr:nth-child(odd), table .rowa:nth-child(odd), table .rowb:nth-child(odd) {
+    background-color: #212121
+}
+
+table ul.options_list {
+    margin: 0;
+    padding: 0
+}
+
+/* =====================================================
+   TROUBLESOME AREA #1: Column Headers
+   ISSUE: White text was hard to read on blue background
+   FIX: Made all colhead/colhead_dark backgrounds blue (#4d4d4d)
+        and forced white text color with !important flags
+   ===================================================== */
+#content div.thin div.head, .colhead, .colhead_dark {
+    background-color: #4d4d4d;
+    line-height: 18px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1
+}
+
+.colhead_dark td, .colhead td {
+    padding-bottom: 12px;
+    padding-top: 12px
+}
+
+.colhead_dark td.sign, .colhead td.sign {
+    text-align: center !important
+}
+
+.colhead_dark td.sign .tooltip, .colhead td.sign .tooltip {
+    display: inline;
+    max-height: 13px;
+    max-width: 13px
+}
+
+td {
+    padding: 4px 6px
+}
+
+td:first-child {
+    padding-left: 12px
+}
+
+td:last-child {
+    padding-right: 12px
+}
+
+form {
+    background-color: #212121
+}
+
+form table td.label {
+    color: #d9d9d9;
+    padding-top: 9px;
+    font-weight: 600;
+    text-align: left;
+    width: 180px
+}
+
+button, input, select, textarea {
+    font-size: 12px
+}
+
+#popup_close, button, input[type=button], input[type=submit] {
+    background: linear-gradient(#9ba1a1, #eaebeb);
+    border: none;
+    border-radius: 1.5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 600;
+    height: 32px;
+    padding: 0 12px
+}
+
+#popup_close:active, button:active, input[type=button]:active, input[type=submit]:active {
+    background: linear-gradient(#eaebeb, #9ba1a1)
+}
+
+input[type=date], input[type=email], input[type=password], input[type=search], input[type=text], select, textarea {
+    background: #c8cbcb;
+    border: 1px solid hsla(0, 0%, 100%, .08);
+    color: #d9d9d9;
+    height: 32px;
+    padding: 0 8px
+}
+
+input[type=date]:focus, input[type=email]:focus, input[type=password]:focus, input[type=search]:focus, input[type=text]:focus, select:focus, textarea:focus {
+    background: #cdd0d0;
+    border: 1px solid hsla(0, 0%, 100%, .25);
+    color: #1a1a1a
+}
+
+textarea {
+    min-height: 96px;
+    padding-top: 6px;
+    width: 100%
+}
+
+.body, .head, .pad {
+    padding: 12px
+}
+
+span.size1 {
+    font-size: .75em
+}
+
+span.size2 {
+    font-size: 1em
+}
+
+span.size3 {
+    font-size: 1.25em
+}
+
+span.size4 {
+    font-size: 1.5em
+}
+
+span.size5 {
+    font-size: 1.75em
+}
+
+span.size6 {
+    font-size: 2em
+}
+
+span.size7 {
+    font-size: 2.25em
+}
+
+span.size8 {
+    font-size: 2.5em
+}
+
+span.size9 {
+    font-size: 2.75em
+}
+
+span.size10 {
+    font-size: 3em
+}
+
+strong.important_text {
+    color: #b71010
+}
+
+strong.important_text_alt {
+    color: #099909
+}
+
+.error, .invalid, .new, .r00, .r01, .r02, .r03, .warning {
+    color: #b71010
+}
+
+.r04, .r05, .r06, .r07, .r08, .r09 {
+    color: #f9e340
+}
+
+.r10, .r20, .r50, .r99, .vote_tag_up {
+    color: #099909
+}
+
+.small_upvote, .small_upvoted, .vote_album_up, .vote_artist_up, .vote_tag_up {
+    font-weight: bolder;
+    color: #099909
+}
+
+.small_downvote, .small_downvoted, .vote_album_down, .vote_artist_down, .vote_tag_down {
+    font-weight: bolder;
+    color: #b71010
+}
+
+#wrapper {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 1020px
+}
+
+.main_column {
+    flex: 3
+}
+
+.sidebar {
+    flex: 1
+}
+
+.box, .box2 {
+    background-color: #212121;
+    margin-bottom: 8px;
+    margin-top: 8px
+}
+
+table.box, table.box2 {
+    overflow: auto
+}
+
+.head {
+    background-color: #c8cbcb;
+    line-height: 18px
+}
+
+.min_padding {
+    margin: 0;
+    padding: 0
+}
+
+.clear:after {
+    display: block;
+    height: 0;
+    visibility: visible
+}
+
+.profileinfo:before {
+    clear: both;
+    display: table
+}
+
+.box.pad .session_table.border, .box.pad:has(.session_table.border) {
+    overflow: scroll !important
+}
+
+.forum_post.forum_unread {
+    border-top: 2px solid #fed100
+}
+
+.forum_post .avatar {
+    padding: 0;
+    width: 150px
+}
+
+.forum_post .avatar img {
+    display: block;
+    height: auto;
+    max-height: 400px !important;
+    max-width: 150px !important;
+    min-width: 150px;
+    width: auto
+}
+
+.forum_post .body img, .sidebar img {
+    max-width: 100%
+}
+
+@media screen {
+    .forum_post .body img {
+        max-width: 100%
+    }
+}
+
+.forum_index h4, .forum_list h4 {
+    font-size: 12px
+}
+
+.forum_index h3, .forum_list h3 {
+    margin-top: 24px
+}
+
+.forum_index td[style*="width: 2%"], .forum_list td[style*="width: 2%"] {
+    width: 24px !important
+}
+
+/* Forum table links should use link color (override h4 a color) */
+.forum_index h4 a,
+.forum_list h4 a,
+.forum_index strong a,
+.forum_list strong a {
+    color: #969696 !important;
+}
+
+.forum_index h4 a:hover,
+.forum_list h4 a:hover,
+.forum_index strong a:hover,
+.forum_list strong a:hover {
+    color: #70d9ff !important;
+}
+
+.last_read {
+    margin-left: 8px
+}
+
+.last_read :before {
+    content: "\27A4";
+    color: #fed100;
+    display: inline-block
+}
+
+#userinfo_minor:before, .linkbox br {
+    content: ""
+}
+
+#nav_logchecker {
+    display: block
+}
+
+.read {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/document.svg) 50% no-repeat
+}
+
+.unread {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/document-round.svg) 50% no-repeat
+}
+
+.read_locked {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/lock.svg) 50% no-repeat
+}
+
+.unread_locked {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/lock-round.svg) 50% no-repeat
+}
+
+.read_sticky {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/pin.svg) 50% no-repeat
+}
+
+.unread_sticky {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/pin-round.svg) 50% no-repeat
+}
+
+.read_locked_sticky {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/pin-and-lock.svg) 50% no-repeat
+}
+
+.unread_locked_sticky {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/pin-and-lock-round.svg) 50% no-repeat
+}
+
+#footer {
+    text-align: center
+}
+
+#covers .cover_seperator, #noty_bottomRight_layout_container .brackets:after, #noty_bottomRight_layout_container .brackets:before {
+    display: none
+}
+
+.thin>.header h1, .thin>.header h2, .thin>.header h3 {
+    flex: 1 0 auto
+}
+
+#covers .pad, #covers p {
+    margin: 0;
+    padding: 0
+}
+
+#add_cover_div>div:first-child, #artist .sidebar .box_image div:last-child {
+    padding: 0 !important
+}
+
+div#flip_view_1 div#similar-artist .name {
+    border: 1px solid #d9d9d9;
+    background: rgba(60, 60, 60, .7);
+    color: #d9d9d9;
+    margin: 0;
+    padding: 0 5px
+}
+
+#covers img {
+    width: 100%
+}
+
+#covers .stats {
+    margin: 0 8px 8px;
+    overflow: hidden
+}
+
+#add_cover_div>div:first-child .additional_add_artists {
+    margin: 8px 12px
+}
+
+#add_cover_div .add_form input[type=text] {
+    margin-bottom: 8px;
+    width: 100%
+}
+
+#artist .sidebar .box_image img {
+    max-width: 100% !important
+}
+
+.box_artists .brackets, .box_tags .edit_tags_votes .brackets {
+    margin: 0 4px
+}
+
+.box_artists .brackets:last-child, .box_tags .edit_tags_votes .brackets:last-child {
+    margin-right: 0
+}
+
+.box_artists .brackets:after, .box_artists .brackets:before, .box_tags .edit_tags_votes .brackets:after, .box_tags .edit_tags_votes .brackets:before {
+    content: "";
+    display: none
+}
+
+.box_addartists_similar form, .box_addartists form, .box_addtag form, .box_search form, .box_zipdownload form {
+    display: flex;
+    flex-flow: row wrap
+}
+
+.box_addartists_similar input[type=text], .box_addartists_similar select, .box_addartists input[type=text], .box_addartists select, .box_addtag input[type=text], .box_addtag select, .box_search input[type=text], .box_search select, .box_zipdownload input[type=text], .box_zipdownload select {
+    flex: 1 1 auto;
+    margin-right: 8px;
+    width: auto
+}
+
+.box_artists ul.stats.nobullet li {
+    content: "";
+    display: block;
+    clear: both
+}
+
+#AddArtists input, #AddArtists select {
+    margin-bottom: 8px;
+    width: 100%
+}
+
+.box_addtag .body strong {
+    display: block;
+    font-weight: 400;
+    margin-top: 8px
+}
+
+.box_addtag .body br {
+    display: none
+}
+
+.add_torrent_container .field_div input {
+    width: 100%
+}
+
+.add_torrent_container form>span:last-child {
+    display: inline-block;
+    margin-top: 8px
+}
+
+.box_zipdownload input, .box_zipdownload select {
+    margin-bottom: 8px;
+    margin-right: 0;
+    width: 100% !important
+}
+
+.box_zipdownload input[type=submit] {
+    margin-bottom: 0
+}
+
+.box_zipdownload #list {
+    margin: 0 0 8px;
+    width: 100%
+}
+
+.box_zipdownload #formats {
+    margin-right: 8px;
+    width: 170px !important
+}
+
+.torrent_table {
+    background-color: #212121
+}
+
+.torrent_table tr:not(.colhead, .colhead_dark) {
+    border-top: 2px solid #1a1a1a
+}
+
+.torrent_table tr .number_column:not(:last-child) {
+    padding-right: 6px
+}
+
+.torrent_table .group {
+    background-color: #252525
+}
+
+.group_torrent {
+    background-color: #212121
+}
+
+#torrents #torrent_details .group_torrent td.edition_info, .group~.group_torrent.edition {
+    background-color: #3a3a3a
+}
+
+.torrentdetails .linkbox {
+    margin-bottom: 6px
+}
+
+
+.group_info {
+    word-break: break-all
+}
+
+.big_info {
+    padding-bottom: 0;
+    padding-top: 0;
+    vertical-align: middle
+}
+
+.big_info .group_image {
+    margin-right: 8px
+}
+
+.big_info .group_info {
+    margin: 4px;
+    margin-top: -6px;  /* Pull artist/album text higher to prevent overlap with bookmark link */
+    position: relative;
+    padding-right: 85px  /* Reserve space for absolutely positioned bookmark link */
+}
+
+.big_info .group_info:after {
+    display: none
+}
+
+/* Align all cells in group rows to middle */
+.torrent_table tr.group td {
+    vertical-align: middle
+}
+
+/* Position bookmark to align with row data columns (time, size, etc.)
+   Uses absolute positioning to align vertically with row center while
+   keeping tags/genres on their own line below the artist/album name */
+.torrent_table tr.group .add_bookmark {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0
+}
+
+.tags a {
+    color: #d9d9d9 !important;
+    font-size: 11px
+}
+
+.tags a:hover {
+    color: #ffffff !important;
+}
+
+.group_info>span:first-child, .group_torrent td:first-child>span, .torrent_links_block {
+    color: #d9d9d9;
+    float: right;
+    margin-right: 4px
+}
+
+.add_bookmark {
+    margin-right: 4px;
+    vertical-align: middle;
+    line-height: 1.5
+}
+
+/* Center column headers for Files, Time, Size, and Snatches */
+.torrent_table .colhead td:not([width="100%"]):not(.cats_col):not(.small:empty) {
+    text-align: center !important
+}
+
+/* Left-align Torrent column header on transcode search page */
+body#better .torrent_table .colhead td:first-child {
+    text-align: left !important
+}
+
+/* Center Torrents and Subscribers columns in collages table */
+.collage_table .colhead td:nth-child(3),
+.collage_table tr:not(.colhead) td:nth-child(3),
+.collage_table .colhead td:nth-child(4),
+.collage_table tr:not(.colhead) td:nth-child(4) {
+    text-align: center !important
+}
+
+.group_torrent:not(.edition) td:first-child {
+    padding-left: 24px
+}
+
+.torrent_table .group td:first-child {
+    padding-left: 4px
+}
+
+.hide_torrents>a, .show_torrents>a {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 100%;
+    position: relative;
+    text-align: center;
+    width: 18px
+}
+
+.show_torrents>a:after {
+    content: "\25B6"
+}
+
+.hide_torrents>a:after {
+    content: "\25BC"
+}
+
+/* =====================================================
+   TROUBLESOME AREA #2: Edition Info
+   ISSUE: Edition info text was white on blue background (hard to read)
+   FIX: Set white text color with !important in separate rules below
+   NOTE: Also affected column header sort arrow icons (fixed with CSS filter)
+   ===================================================== */
+.group_torrent .edition_info {
+    border-top: 1px solid transparent;
+    padding-left: 34px;
+    position: relative
+}
+
+.group_torrent .edition_info a {
+    display: block;
+    font-size: 16px;
+    left: 0;
+    line-height: 27px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 22px
+}
+
+#artist .td_info>a {
+    margin-left: -8px
+}
+
+.colhead_dark td[width*="70%"], .colhead td[width*="70%"] {
+    width: 100%
+}
+
+.colhead .cats_col, .colhead_dark .cats_col {
+    height: auto;
+    padding: 0
+}
+
+pre {
+    white-space: pre-wrap
+}
+
+.log_section pre {
+    line-height: 1.4
+}
+
+#content .header>h1, #content .header>h2, #content .header>h3, #content .thin>h1, #content .thin>h2, #content .thin>h3 {
+    margin-bottom: 0;
+    margin-top: 16px
+}
+
+ul.collage_images {
+    margin: 0;
+    width: 100%
+}
+
+ul.collage_images li {
+    display: block;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    width: 20%
+}
+
+ul.collage_images li a, ul.collage_images li a img {
+    height: 100%;
+    position: absolute;
+    width: 100%
+}
+
+ul.collage_images li:before {
+    content: "";
+    float: left;
+    padding-top: 100%
+}
+
+ul.collage_images li a {
+    display: block;
+    left: 0;
+    top: 0
+}
+
+ul.collage_images li a>span {
+    height: auto;
+    left: 0;
+    margin: 6px;
+    position: absolute;
+    top: 0;
+    width: auto
+}
+
+.recent {
+    table-layout: fixed
+}
+
+.recent tr:not(.colhead, .colhead_dark)>td {
+    padding: 0;
+    position: relative
+}
+
+.recent tr:not(.colhead, .colhead_dark)>td:before {
+    content: "";
+    float: left;
+    padding-top: 100%
+}
+
+.recent tr:not(.colhead, .colhead_dark)>td a {
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%
+}
+
+.recent tr:not(.colhead, .colhead_dark)>td a img {
+    height: 100%;
+    position: absolute;
+    width: 100%
+}
+
+#userform #settings_sections h2 a, .rule_short {
+    color: #969696
+}
+
+.poll li {
+    margin-bottom: 2px
+}
+
+.poll .graph {
+    background-color: #cdd0d0;
+    display: block;
+    height: 8px;
+    margin-bottom: 12px
+}
+
+.poll .graph span {
+    background-color: #4d4d4d;
+    display: block;
+    float: left;
+    height: 8px
+}
+
+.lightbox {
+    align-items: center;
+    background-color: rgba(0, 0, 0, .32);
+    inset: 0 0 0 0;
+    cursor: pointer;
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin: auto;
+    position: fixed;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index: 1000
+}
+
+.lightbox img {
+    box-shadow: 0 0 32px 6px rgba(0, 0, 0, .32);
+    display: block;
+    max-height: 92%;
+    max-width: 92%
+}
+
+#footer {
+    width: 100%;
+    color: #d9d9d9;
+    font-synthesis: 11px;
+    margin: 32px auto 16px
+}
+
+#footer p {
+    margin: 0
+}
+
+#messageform textarea, #quickreplytext textarea {
+    margin: 0 0 12px
+}
+
+#quickreplytext br:last-child {
+    display: none
+}
+
+.rule_summary {
+    padding: 24px !important
+}
+
+.golden_rules {
+    margin: 0;
+    padding: 0
+}
+
+.rule_wrap {
+    margin-bottom: 8px
+}
+
+#menu>ul, #userinfo_username .username, .album_votes .favoritecount {
+    font-weight: 600
+}
+
+#inbox #content .search_form input[type=search], #wiki #content .search_form input[type=search] {
+    margin-top: 8px;
+    width: 100% !important
+}
+
+#searchbox {
+    margin-bottom: 12px
+}
+
+#inbox .manage_form .box {
+    padding: 0
+}
+
+#inbox .unreadpm {
+    background: hsla(0, 0%, 100%, .25)
+}
+
+#wiki .navigation_list {
+    margin: 0;
+    padding: 0
+}
+
+#wiki .box_info ul {
+    margin: 0
+}
+
+#rules #content .thin .header p {
+    display: block;
+    margin: 0 0 8px;
+    width: 100%
+}
+
+.profileinfo img {
+    max-width: 100%
+}
+
+#user .box>.head {
+    height: auto !important
+}
+
+#user .box>.head span[style="float: left;"]:first-child {
+    float: none !important
+}
+
+#user .avatar_container img {
+    max-height: 400px;
+    max-width: 150px
+}
+
+#user #userform {
+    background-color: transparent;
+    width: calc(100% - 248px)
+}
+
+#userform #settings_sections h2 {
+    font-size: 12px;
+    line-height: 1.6
+}
+
+#userform #settings_sections h2 a:hover {
+    color: #969696
+}
+
+#userform #settings_sections input {
+    margin-top: 8px
+}
+
+#menu>ul a:hover, #userinfo_minor:hover a:hover, #userinfo_username:hover a:hover {
+    background-color: hsla(0, 0%, 100%, .2)
+}
+
+#torrents .filter_torrents .ft_submit {
+    display: flex;
+    flex-flow: row nowrap
+}
+
+#torrents .filter_torrents .ft_submit input {
+    margin-right: 4px
+}
+
+#torrents .filter_torrents .ft_submit span {
+    order: 2
+}
+
+#votes {
+    position: relative
+}
+
+.album_votes {
+    line-height: normal
+}
+
+#collages.collage_table .colhead td:last-child, #personal_collages .colhead td:last-child, .filelist_table .colhead_dark td:last-child, .forum_index .colhead td[style*="width: 7%"] {
+    text-align: right
+}
+
+.search_form {
+    margin: 8px 0
+}
+
+@media(min-width:575px) {
+    .search_form {
+        overflow: hidden
+    }
+}
+
+.search_form div.submit {
+    margin: 12px;
+    text-align: center
+}
+
+.box.pad .search_form, .search_form .filter_torrents, .search_form .filter_torrents div.submit, .searchbars .search_form, .sidebar .search_form {
+    margin: 0
+}
+
+.box2 table:not(.layout), .box table:not(.layout) {
+    border: 2px solid rgba(45, 57, 58, .5333333333);
+    margin: 8px 0
+}
+
+span[style*="color: green"] {
+    color: #6ef7a7 !important
+}
+
+span[style*="color: red"] {
+    color: #b71010 !important
+}
+
+span[style*="color: blue"] {
+    color: #b6bcfb !important
+}
+
+.filelist_table td, .reportinfo_table, .torrentdetails, .wrap_overflow, blockquote {
+    -webkit-hyphens: unset;
+    -ms-hyphens: unset;
+    hyphens: unset;
+    word-wrap: unset
+}
+
+.filelist_table td, .reportinfo_table, .torrentdetails {
+    background-color: rgba(110.7, 149, 169, .15)
+}
+
+#bookmarks #torrent_table tr:not(.colhead, .colhead_dark) td:nth-child(2) {
+    border-top: 1px solid transparent;
+    height: 100%;
+    padding: 0;
+    position: relative
+}
+
+#bookmarks .torrent_row td:nth-child(3)>span:first-child {
+    float: right
+}
+
+#quickpost {
+    width: 100% !important
+}
+
+.donation_info {
+    margin-left: 0;
+    margin-right: 0
+}
+
+#messageform #buttons input[type=button], #messageform #buttons label, #quickpostform .preview_submit input[type=button], #quickpostform .preview_submit label, .forum_post .colhead_dark input[type=button], .forum_post .colhead_dark label {
+    margin-right: 4px
+}
+
+.thin:not(.linkbox)>:not(.two_columns) {
+    width: 100%
+}
+
+.thin>table {
+    width: calc(100% - 8px)
+}
+
+.thin>.sidebar~* {
+    width: auto
+}
+
+#header {
+    display: flex;
+    flex-direction: column
+}
+
+#alerts {
+    order: 10
+}
+
+.wrap_overflow {
+    word-break: break-word !important
+}
+
+#sortable {
+    width: unset !important;
+    cursor: move
+}
+
+#sortable li {
+    word-break: break-all;
+    cursor: move;
+    border: thin transparent;
+    border-radius: 2rem
+}
+
+#sortable label {
+    cursor: move
+}
+
+#sortable li:hover {
+    background-color: rgba(0, 0, 0, .1333333333)
+}
+
+form input {
+    vertical-align: center
+}
+
+#discog_table tr[id^=torrents_] {
+    background-color: #1a5a8a
+}
+
+#discog_table tr[id^=torrents_] :not(a.tooltip.brackets) strong {
+    font-size: large;
+    color: #d9d9d9
+}
+
+#discog_table .discog strong a, #discog_table td.td_info.big_info div.group_info.clear strong a {
+    font-size: 115%;
+    color: #4d4d4d
+}
+
+div#discog_table td.td_info:not(span.torrent_links_block)>a {
+    -webkit-padding-start: 1em;
+    padding-inline-start: 1em
+}
+
+#discog_table>div.box.center {
+    background-color: #1a5a8a;
+    text-align: left;
+    padding: 12px 12px 12px 11rem
+}
+
+#discog_table>div.box.center:before {
+    color: #d9d9d9 !important;
+    font-size: large !important;
+    content: "\21E9   Jump to" !important;
+    font-weight: 600;
+    position: absolute;
+    margin-left: -9rem;
+    margin-top: -.25rem
+}
+
+#discog_table>div.box.center a {
+    margin: 0 8px
+}
+
+#discog_table>div.box.center .brackets:after, #discog_table>div.box.center .brackets:before {
+    display: none
+}
+
+.tooltipster-base {
+    box-shadow: 0 0 8px rgba(0, 0, 0, .25);
+    width: auto !important
+}
+
+.tooltipster-default {
+    background-color: #1a1a1a;
+    border: 4px solid #4d4d4d;
+    border-radius: 2.5px;
+    color: #d9d9d9
+}
+
+.tooltipster-default .tooltipster-content {
+    background-color: #1a1a1a;
+    color: #d9d9d9;
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 4px 6px
+}
+
+.tooltipster-default .tooltipster-content a {
+    background-color: #1a1a1a;
+    color: #1a1a1a;
+    font-weight: 600
+}
+
+.tooltipster-default .tooltipster-content a:hover {
+    color: #d9d9d9
+}
+
+.cats_applications, .cats_audiobooks, .cats_comedy, .cats_comics, .cats_ebooks, .cats_elearningvideos, .cats_music {
+    width: 0;
+    height: 80px
+}
+
+body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .cats_comedy, body#collage .cats_comics, body#collage .cats_ebooks, body#collage .cats_elearningvideos, body#collage .cats_music {
+    height: 2rem
+}
+
+.cats_music {
+    border-right: thin solid #2f4f4f
+}
+
+.cats_applications {
+    border-right: thick solid silver
+}
+
+.cats_audiobooks {
+    border-right: thick solid #6495ed
+}
+
+.cats_comedy {
+    border-right: thick solid #00bfff
+}
+
+.cats_comics {
+    border-right: thick solid gold
+}
+
+.cats_ebooks {
+    border-right: thick solid #d2691e
+}
+
+.cats_elearningvideos {
+    border-right: thick solid #9370db
+}
+
+.thin>.header .linkbox {
+    align-self: flex-end;
+    flex: 1 0 auto;
+    margin-top: 8px
+}
+
+.thin>.header {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%
+}
+
+#header, #userinfo {
+    position: relative
+}
+
+#header ul {
+    margin: 0;
+    padding: 0
+}
+
+#header li {
+    margin: 0
+}
+
+@media only screen and (min-width:575px) {
+    #logo {
+        box-sizing: content-box;
+        height: 42px;
+        padding: 24px 8px 16px;
+        width: 200px
+    }
+
+    #logo a {
+        background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/89930g.png) 100% no-repeat
+    }
+
+    #logo>a {
+        background-size: 200px;
+        display: block;
+        height: 100%;
+        margin-top: 0
+    }
+}
+
+#menu>ul {
+    display: flex;
+    flex-flow: row nowrap;
+    font-size: 13px;
+    overflow: hidden;
+    width: calc(100% - 149px)
+}
+
+#menu>ul li {
+    flex: 1 1 auto
+}
+
+#menu>ul a {
+    display: block;
+    height: 100%;
+    line-height: 50px;
+    text-align: center
+}
+
+#nav_index {
+    display: none
+}
+
+#userinfo_minor:hover a, #userinfo_username:hover a {
+    display: block
+}
+
+#userinfo_username #nav_userinfo>a {
+    display: block;
+    font-size: 13px;
+    line-height: 50px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100px
+}
+
+#userinfo_major>li, #userinfo_stats>li, .linkbox .brackets {
+    margin-left: 8px
+}
+
+#userinfo_major, #userinfo_stats {
+    display: flex;
+    flex-flow: row nowrap;
+    position: absolute;
+    right: 8px
+}
+
+#userinfo_major {
+    font-size: 13px;
+    right: 41px;
+    top: -53px
+}
+
+#userinfo_stats {
+    font-size: 13px;
+    top: -31px
+}
+
+#menu ul li:not(#nav_staff) a, #userinfo a.username {
+    color: #969696;
+    text-shadow: none
+}
+
+/* =====================================================
+   TROUBLESOME AREA #3: Menu Gradient
+   ISSUE: Redacted has 10 menu items, BTN only had 8 - gradient looked choppy
+   FIX: Extended gradient from 10 to 12 steps for smoother progression
+        from dark grey (#333333) to medium grey (#666666)
+   ===================================================== */
+/* Smooth 12-step grey gradient for Redacted menu */
+#menu li:nth-child(2) {
+    background-color: #252525
+}
+
+#menu li:nth-child(3) {
+    background-color: #2a2a2a
+}
+
+#menu li:nth-child(4) {
+    background-color: #2f2f2f
+}
+
+#menu li:nth-child(5) {
+    background-color: #343434
+}
+
+#menu li:nth-child(6) {
+    background-color: #393939
+}
+
+#menu li:nth-child(7) {
+    background-color: #3e3e3e
+}
+
+#menu li:nth-child(8) {
+    background-color: #434343
+}
+
+#menu li:nth-child(9) {
+    background-color: #484848
+}
+
+#menu li:nth-child(10) {
+    background-color: #4d4d4d
+}
+
+#userinfo_username {
+    background-color: #525252;
+    right: 50px
+}
+
+#userinfo_minor {
+    background-color: #575757;
+}
+
+#menu {
+    border-radius: 5px 5px 0 0;
+    overflow: hidden
+}
+
+@media(min-width:575px) {
+    .thin:last-child>:not(.two_columns) {
+        margin: 4px
+    }
+
+    #nav_donate .tooltip:after {
+        color: red;
+        content: "\2764\FE0F";
+        font-size: 75%;
+        vertical-align: top
+    }
+
+    #nav_staff {
+        font-weight: 400
+    }
+
+    #menu>ul>#nav_staff {
+        display: inline;
+        font-size: 13px;
+        position: absolute;
+        right: 8px;
+        top: 29px
+    }
+
+    #menu>ul>#nav_staff>a {
+        line-height: 1.6;
+        padding: 0
+    }
+
+    #menu>ul>#nav_staff>a:hover {
+        background-color: transparent;
+        color: #969696
+    }
+
+    #userinfo_minor:before {
+        background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/chevrons-down.svg) no-repeat;
+        filter: brightness(200%);
+        background-size: 28px;
+        background-position: 50%;
+        display: block;
+        height: 50px;
+        line-height: 50px;
+        width: 50px
+    }
+
+    #userinfo_minor a, #userinfo_username a {
+        display: none;
+        line-height: 32px;
+        padding: 0 8px;
+        width: 150px
+    }
+
+    #userinfo_minor:hover:before {
+        margin-left: 100px
+    }
+
+    #userinfo_minor {
+        background-color: #4d4d4d;
+        border-radius: 0 5px 0 0;
+        right: 0
+    }
+
+    #userinfo_minor, #userinfo_username {
+        position: absolute;
+        z-index: 900
+    }
+
+    #userinfo_minor:hover, #userinfo_username:hover {
+        z-index: 800
+    }
+
+    #userinfo_username:hover {
+        border-radius: 0 10px 0 0;
+        right: 0
+    }
+
+    #userinfo_minor:hover, #userinfo_username:hover {
+        background-color: #5c5c5c
+    }
+
+    .settings_sidebar {
+        margin-left: 8px
+    }
+
+    #userform #settings_sections {
+        width: 240px
+    }
+}
+
+#menu>ul a:hover, #userinfo_minor:hover:before, #userinfo_minor:hover a:hover, #userinfo_username:hover a:hover {
+    background-color: hsla(0, 0%, 100%, .25)
+}
+
+#menu>ul a:hover, #userinfo_minor:hover a, #userinfo_username:hover a {
+    color: #969696
+}
+
+#userinfo_minor:hover:before {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-image: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/menu.svg);
+    background-size: 30px;
+    background-origin: padding-box;
+    background-clip: border-box
+}
+
+.sidebar {
+    order: 5
+}
+
+.thin:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -4px
+}
+
+#searchbars>ul {
+    align-items: center;
+    background-color: #373737;
+    display: flex;
+    height: 50px;
+    padding: 0 9px
+}
+
+#searchbars>ul li {
+    flex: 1 1 auto;
+    margin-right: 9px
+}
+
+#searchbars>ul li:last-child {
+    margin-right: 0
+}
+
+#searchbars>ul input {
+    width: 100%
+}
+
+#searchbars .search_form {
+    background: 0 0
+}
+
+#searchbars .search_form input {
+    border: none;
+    border-radius: 2.5px;
+    height: 30px;
+    background: #262626
+}
+
+#searchbars .search_form input:focus {
+    background: #272828
+}
+
+.linkbox, .linkbox .center {
+    text-align: right
+}
+
+.linkbox br {
+    display: block;
+    line-height: 4px
+}
+
+.linkbox>strong {
+    color: #4d4d4d
+}
+
+.linkbox .brackets:after, .linkbox .brackets:before {
+    display: none
+}
+
+#noty_bottomRight_layout_container {
+    bottom: 24px !important;
+    right: 24px !important
+}
+
+#noty_bottomRight_layout_container>li {
+    background: 0 0 !important;
+    border: 2px solid #4d4d4d !important;
+    border-radius: 1px !important
+}
+
+@media screen and (prefers-reduced-motion:no-preference) {
+    #noty_bottomRight_layout_container {
+        box-shadow: 0 10px 18px rgba(0, 0, 0, .25), 0 7px 7px rgba(0, 0, 0, .22);
+        transition: all .25s cubic-bezier(.25, .8, .25, 1)
+    }
+
+    #noty_bottomRight_layout_container:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22);
+        transform: translateY(-3.5px)
+    }
+}
+
+#noty_bottomRight_layout_container .noty_message {
+    background: radial-gradient(circle at top right, #969696, #969696) !important;
+    color: #969696 !important;
+    font-weight: 700;
+    padding: .6rem !important
+}
+
+#noty_bottomRight_layout_container .noty_message .noty_text {
+    line-height: 1.1rem !important
+}
+
+#noty_bottomRight_layout_container .noty_buttons {
+    background-color: #000 !important;
+    border: none !important;
+    padding: .4rem !important
+}
+
+#noty_bottomRight_layout_container .noty_buttons a {
+    background-color: none;
+    color: #ffffff !important;
+    border: thin solid transparent;
+    border-radius: 14px;
+    padding: 0 6px
+}
+
+@media screen and (prefers-reduced-motion:no-preference) {
+    #noty_bottomRight_layout_container .noty_buttons a {
+        transition: all .6s cubic-bezier(.25, .8, .25, 1)
+    }
+}
+
+#noty_bottomRight_layout_container .noty_buttons a:hover {
+    background-color: #4d4d4d;
+    color: #3a3a3a !important;
+    border: thin solid #3a3a3a;
+    border-radius: 14px
+}
+
+@media screen and (prefers-reduced-motion:no-preference) {
+    #noty_bottomRight_layout_container .noty_buttons a:hover {
+        transition: all .15s cubic-bezier(.25, .8, .25, 1)
+    }
+}
+
+.sidebar .pad ol, .sidebar .pad ul {
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 0
+}
+
+.sidebar ol.nobullet, .sidebar ul.nobullet {
+    padding-left: 0
+}
+
+.sidebar img {
+    height: auto;
+    width: auto
+}
+
+#musicbrainz_popup {
+    color: #d9d9d9;
+    background: #d0d2d2;
+    border: #4d4d4d;
+    padding: 1rem;
+    font-weight: 600
+}
+
+#musicbrainz_popup a {
+    color: #1a1a1a
+}
+
+#musicbrainz_popup a:hover {
+    color: #969696
+}
+
+#musicbrainz_popup .brackets {
+    font-weight: 400
+}
+
+#musicbrainz_popup #popup_close {
+    color: #ffffff
+}
+
+/* =====================================================
+   TROUBLESOME AREA #4: Tag Styling
+   ISSUE: Tags had dark text on blue oval backgrounds (unreadable)
+   FIX: Added white text (#d9d9d9) with !important on all tag selectors
+        across Browse, Requests, Top 10, Bookmarks, Collages, Uploaded pages
+   NOTE: Required extensive selector list to catch all tag variations
+   ===================================================== */
+#artist .sidebar div.box.box_tags ul.stats.nobullet li a, #better .tags a, #discog_table .group .tags :not(:empty), #request_table .tags, #taglist td a, #top10 .tags, #torrent_table .group .tags :not(:empty), #user #requests .tags a, #user div.sidebar .box_userinfo_activity ul.stats.nobullet li a, #userhistory div.group_info.clear div.tags a, .collage_table .td_info .tags :not(:empty), .collage_table td .tags a, td.big_info div.group_info.clear div.tags a, body#torrents div.box.box_tags li>a:first-child, table.torrent_table.cats.checkboxes.border.m_table td.td_info.big_info div.group_info.clear div.tags a, table.torrent_table.cats.m_table td.td_info.big_info div.group_info.clear div.tags a {
+    visibility: visible;
+    box-sizing: border-box;
+    display: inline-block;
+    font-weight: 700;
+    font-size: .6rem;
+    vertical-align: baseline;
+    color: #d9d9d9 !important;
+    background: #3a3a3a;
+    padding: 0 .5rem;
+    border-radius: 1rem;
+    margin-bottom: .1rem;
+    transition: all .6s cubic-bezier(.25, .8, .25, 1)
+}
+
+@media screen and (prefers-reduced-motion:no-preference) {
+    #artist .sidebar div.box.box_tags ul.stats.nobullet li a:hover, #discog_table .tags :hover, #taglist td a:hover, #torrent_table .group .tags :not(:empty):hover, #user #requests .tags a:hover, #user div.sidebar .box_userinfo_activity ul.stats.nobullet li a:hover, #userhistory div.group_info.clear div.tags :hover, .collage_table .td_info .tags :not(:empty):hover, .collage_table td .tags a:hover, td.big_info div.group_info.clear div.tags a:hover, body#torrents div.box.box_tags li>a:first-child:hover, table.torrent_table.cats.checkboxes.border.m_table td.td_info.big_info div.group_info.clear div.tags a:hover, table.torrent_table.cats.m_table td.td_info.big_info div.group_info.clear div.tags a:hover {
+        color: #d9d9d9 !important;
+        background: #4d4d4d !important;
+        transition: all .15s cubic-bezier(.25, .8, .25, 1);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22)
+    }
+}
+
+/* Genre tags wrapping - max-width set to 70% so tags wrap after ~7-8 items
+   instead of extending across full width with 10+ tags per line */
+#better .tags, #request_table .tags, #top10 .tags {
+    font-style: italic;
+    font-weight: 400;
+    margin-inline: 1rem;
+    display: inline-block;
+    max-width: 70%;
+    white-space: normal;
+}
+
+#top10 .tags a {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+#discog_table .tags, #torrent_table .tags, #userhistory div.group_info.clear div.tags, table.torrent_table.cats.checkboxes.border.m_table td.td_info.big_info div.group_info.clear div.tags, table.torrent_table.cats.m_table td.td_info.big_info div.group_info.clear div.tags {
+    color: rgba(0, 0, 0, .1)
+}
+
+tr.snatched_group div.tags:before {
+    content: "snatched group"
+}
+
+tr.snatched_torrent div.tags:before {
+    content: "snatched torrent"
+}
+
+tr.snatched_group div.tags:before, tr.snatched_torrent div.tags:before {
+    visibility: visible;
+    color: #d9d9d9;
+    font-weight: 200
+}
+
+#torrent_details.snatched .group_torrent.snatched_torrent .torrent_label.tooltip.tl_snatched, tr.snatched_group div.tags:before, tr.snatched_torrent div.tags:before {
+    background: #c2c5c5;
+    border-radius: 1rem;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: .6rem;
+    font-style: italic;
+    margin-bottom: .1rem;
+    padding: 0 .5rem;
+    vertical-align: baseline
+}
+
+#torrent_details.snatched .group_torrent.snatched_torrent .torrent_label.tooltip.tl_snatched {
+    font-weight: 400;
+    margin-inline: .5rem
+}
+
+.alertbar, .save_message, .sys_error {
+    border: thick solid #969696;
+    padding: 1rem 1rem 1rem 48px;
+    background-color: #d4edda;
+    background-image: url(/svg/site/ops-icon-harp-ccc.svg);
+    background-repeat: no-repeat;
+    background-position: 8px;
+    background-size: 32px;
+    color: #d9d9d9 !important;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 8px;
+    text-align: center
+}
+
+.alertbar a {
+    color: #969696 !important
+}
+
+.error_message {
+    border: thick solid #eb1943;
+    padding: 1rem 1rem 1rem 48px;
+    background-color: #633;
+    background-image: url(/svg/site/ops-icon-triangle-ccc.svg);
+    background-repeat: no-repeat;
+    background-position: 8px;
+    background-size: 32px;
+    color: #d9d9d9 !important;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 8px;
+    text-align: center
+}
+
+.error_message a {
+    color: #969696 !important
+}
+
+@media screen and (prefers-reduced-motion:no-preference) {
+    @keyframes fx-borderpop-bad {
+        0% {
+            border: thick solid #f9e340
+        }
+
+        70% {
+            border: thick solid #fe8aa2
+        }
+
+        to {
+            border: thick solid #eb1943
+        }
+    }
+
+    @keyframes fx-borderpop-good {
+        0% {
+            border: thick solid #099909
+        }
+
+        70% {
+            border: thick solid #969696
+        }
+
+        to {
+            border: thick solid #969696
+        }
+    }
+
+    .save_message {
+        animation-name: fx-borderpop-good;
+        animation-duration: 1.5s
+    }
+
+    .error_message {
+        animation-name: fx-borderpop-bad;
+        animation-duration: 1.5s
+    }
+}
+
+.upload-error, ul#check.nobullet>* {
+    border: thick solid #daa520;
+    padding: 1rem 1rem 1rem 48px;
+    background: #eaebeb;
+    background-image: url(/svg/site/ops-icon-triangle-000.svg);
+    background-repeat: no-repeat;
+    background-position: 8px;
+    background-size: 32px
+}
+
+.upload-error a, ul#check.nobullet>* a {
+    color: #b71010 !important;
+    -webkit-text-decoration-line: underline;
+    text-decoration-line: underline
+}
+
+.upload-error a:after, ul#check.nobullet>* a:after {
+    content: "\2197\FE0E"
+}
+
+.upload-error, .upload-error *, ul#check.nobullet *, ul#check.nobullet>* {
+    color: #000 !important;
+    font-size: 12px;
+    font-weight: 700
+}
+
+.upload-error:after, ul#check:after {
+    content: "Warning!  There were one or more errors in your submission. Check below for error messages.";
+    font-weight: 700;
+    position: absolute;
+    top: 64px;
+    left: 50vw;
+    transform: translateX(-50%);
+    z-index: 900;
+    color: #000;
+    border: thick solid #daa520;
+    border-radius: .25rem;
+    padding: 1rem 1rem 1rem 48px;
+    background-color: #eaebeb;
+    background-image: url(/svg/site/ops-icon-triangle-000.svg);
+    background-repeat: no-repeat;
+    background-position: 8px;
+    background-size: 32px;
+    box-shadow: 0 10px 18px rgba(0, 0, 0, .55), 0 7px 7px rgba(0, 0, 0, .52), 0 -5px 9px rgba(0, 0, 0, .32)
+}
+
+.permission_head {
+    width: 400px
+}
+
+.permission_head, .permissions {
+    margin-left: auto;
+    margin-right: auto
+}
+
+.permissions {
+    /*! width:930px; */
+    width: min(1200px, 95%);
+    display: flex;
+    flex-flow: row wrap
+}
+
+.permission_container {
+    float: left;
+    padding: 5px;
+    width: 300px
+}
+
+.permission_container input {
+    margin: 0 3px 5px 0;
+    vertical-align: top
+}
+
+.submit_container {
+    clear: both;
+    text-align: right
+}
+
+.toolbox_container {
+    /*! float:left; */
+    padding: 5px;
+    /*! width:200px; */
+    flex: 1 1 auto;
+    flex-basis: 30ch
+}
+
+.toolbox_container tr.colhead {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0
+}
+
+@media(max-width:575px) {
+    #dnulist tr.colhead, .toolbox_container tr.colhead {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 32px;
+        font-size: 120%;
+        font-weight: 700
+    }
+}
+
+.autocomplete-suggestions {
+    margin-top: 5px;
+    background: #d0d2d2 !important;
+    color: #888;
+    width: auto !important;
+    text-align: left;
+    cursor: default;
+    border: 1px solid #1a5a8a;
+    border-top-style: dashed;
+    box-shadow: 3px 3px 9px rgba(0, 0, 0, .8) !important;
+    position: absolute;
+    display: none;
+    z-index: 800;
+    max-height: min(80vw, 254px);
+    overflow: hidden;
+    overflow-y: auto;
+    box-sizing: border-box
+}
+
+.autocomplete-suggestions .autocomplete-suggestion {
+    cursor: pointer;
+    position: relative;
+    padding: 0 6px;
+    line-height: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #d9d9d9 !important
+}
+
+.autocomplete-suggestions .autocomplete-suggestion strong {
+    font-weight: 400;
+    color: #969696 !important
+}
+
+.autocomplete-suggestions .autocomplete-suggestion.autocomplete-selected {
+    background-color: hsla(0, 0%, 100%, .25) !important
+}
+
+@media only screen and (max-width:575px) {
+    #forums input, #inbox input[type=submit] {
+        font-size: 10px;
+        padding: 4px
+    }
+}
+
+@media(max-width:575px) {
+    .m_hidden {
+        display: none !important
+    }
+
+    * {
+        scroll-margin-top: 32px
+    }
+
+    td:first-child {
+        padding-left: 6px
+    }
+
+    #inbox .body img {
+        max-width: 100% !important
+    }
+
+    #wrapper {
+        padding-top: 36px
+    }
+
+    .thin {
+        flex-direction: column;
+        margin: auto
+    }
+
+    html>body div.thin>* {
+        width: 100%
+    }
+
+    form table td.label {
+        width: 5rem
+    }
+
+    .linkbox {
+        text-align: left;
+        width: 90%
+    }
+
+    #stats img, html body .scale_image {
+        max-width: 100%
+    }
+
+    .i-am-new {
+        width: calc(100% - 48px) !important
+    }
+
+    .i-am-new li {
+        width: 100% !important
+    }
+
+    #user #userform {
+        align-items: stretch;
+        display: flex;
+        flex-direction: column;
+        margin-left: 0;
+        width: 100%
+    }
+
+    .settings_sidebar {
+        flex: unset;
+        order: -1
+    }
+
+    #settings_sections {
+        position: static !important
+    }
+
+    input[type=email], input[type=password], input[type=search], input[type=text], select {
+        width: 100%
+    }
+
+    #upload .box {
+        width: 100% !important
+    }
+
+    .cat_list tr {
+        display: flex;
+        flex-wrap: wrap
+    }
+
+    .layout.cat_list.ft_cat_list {
+        flex-direction: row;
+        height: auto
+    }
+
+    .layout.cat_list.ft_cat_list tr td {
+        width: 40% !important
+    }
+
+    .m_table .colhead, .m_table .colhead_dark, .m_table tbody {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%
+    }
+
+    .m_table tbody {
+        align-items: stretch;
+        flex-direction: column
+    }
+
+    .m_table .colhead, .m_table .colhead_dark {
+        flex-wrap: nowrap
+    }
+
+    .m_table .colhead_dark td:not(.m_th_right, .m_th_left), .m_table .colhead td:not(.m_th_right, .m_th_left) {
+        display: none
+    }
+
+    .m_table .colhead_dark td, .m_table .colhead td {
+        width: auto !important
+    }
+
+    .m_th_left {
+        visibility: hidden
+    }
+
+    body:not(#artist) .m_th_left:before {
+        color: #fff;
+        content: "Info";
+        visibility: visible
+    }
+
+    #artist table#request_table tr.colhead_dark td.m_th_left {
+        visibility: visible
+    }
+
+    .m_th_left_collapsable {
+        padding-left: 34px
+    }
+
+    .m_th_right {
+        margin-left: auto
+    }
+
+    .m_th_right+.m_th_right {
+        margin-left: unset
+    }
+
+    .m_th_right+.m_th_right+.m_th_right {
+        margin-left: unset;
+        padding-right: 12px
+    }
+
+    body#artist div#discog_table .m_table tr.colhead_dark td.m_th_left {
+        visibility: visible
+    }
+
+    body#artist div#discog_table .m_table tr.colhead_dark td.m_th_left a {
+        padding-inline: 1rem
+    }
+
+    .m_table tr:not(.hidden, .colhead, .colhead_dark) {
+        display: block;
+        line-height: 1.4;
+        padding-bottom: 3px;
+        position: relative;
+        width: 100%
+    }
+
+    .m_table td {
+        display: block
+    }
+
+    .m_table tr:not(.colhead, .colhead_dark) td:not(.m_td_left, .m_td_right) {
+        padding-bottom: 0;
+        padding-top: 0;
+        text-align: left;
+        width: 81%
+    }
+
+    td.m_td_left {
+        align-items: center;
+        display: flex;
+        float: left;
+        height: 100%;
+        width: 34px
+    }
+
+    .m_td_right {
+        margin: 0;
+        padding: 0 !important;
+        position: absolute;
+        right: 16px;
+        text-align: right;
+        top: .2rem
+    }
+
+    .m_td_right+.m_td_right {
+        top: 1.6em
+    }
+
+    .m_td_right+.m_td_right+.m_td_right {
+        top: 3em
+    }
+
+    .torrent_table * {
+        float: none
+    }
+
+    .torrent_table .add_bookmark a, .torrent_table .remove_bookmark a {
+        float: none !important
+    }
+
+    .torrent_table .cats_col:not(.m_cats_col) {
+        display: none
+    }
+
+    .group .group_info, .torrent .group_info {
+        word-break: inherit;
+        margin-right: 40px
+    }
+
+    .torrent .group_info span:first-child {
+        order: 10
+    }
+
+    .group_info .tags {
+        order: 20;
+        width: 100%
+    }
+
+    #wrapper .m_table .edition {
+        padding-top: 0;
+        padding-bottom: 0
+    }
+
+    .edition_info {
+        padding: 4px 12px 4px 32px !important
+    }
+
+    .group_torrent .edition_info a {
+        line-height: 23px
+    }
+
+    .edition_1 {
+        min-height: 5em
+    }
+
+    .td_leechers.m_td_right, .td_seeders.m_td_right, .td_snatched.m_td_right {
+        min-width: 30px;
+        right: 4px;
+        text-align: left
+    }
+
+    .td_leechers.m_td_right:before, .td_seeders.m_td_right:before, .td_snatched.m_td_right:before {
+        background: 0/10px no-repeat url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/arrow-loop.svg);
+        color: #d9d9d9;
+        content: ":";
+        filter: brightness(80%);
+        position: absolute;
+        right: calc(100% + 2px);
+        text-align: right;
+        width: 14px
+    }
+
+    .td_seeders.m_td_right:before {
+        background-image: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/arrow-up-round.svg)
+    }
+
+    .td_leechers.m_td_right:before {
+        background-image: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/arrow-down-round.svg)
+    }
+
+    .m_table.checkboxes td:first-child {
+        display: block
+    }
+
+    .group_torrent:not(.edition, .hidden) {
+        display: flex;
+        flex-direction: column;
+        padding: 5px 0 0 22px
+    }
+
+    .torrent_table .group_torrent:not(.edition) td:first-child {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        width: 80%
+    }
+
+    .torrent_table .group_torrent:not(.edition) td:first-child span {
+        order: 5;
+        padding-left: 6px
+    }
+
+    .td_file_count:before {
+        content: "Files: "
+    }
+
+    .torrent_table .group_torrent td:nth-child(4) {
+        padding-bottom: 5px;
+        text-align: left
+    }
+
+    #torrents_album .edition_1 td:nth-child(n+2) {
+        padding-left: 15px
+    }
+
+    table#discog_table.torrent_table.grouping.cats.m_table .number_column.td_size.nobr, table#torrent_table.torrent_table.grouping.cats.m_table td.number_column.td_size.nobr {
+        text-align: left;
+        margin-left: 1rem
+    }
+
+    table#discog_table.torrent_table.grouping.cats.m_table .number_column.td_size.nobr:before, table#torrent_table.torrent_table.grouping.cats.m_table td.number_column.td_size.nobr:before {
+        content: "\1F4C1   "
+    }
+
+    #top10 .td_size:before {
+        content: "Size: "
+    }
+
+    .td_data:before {
+        content: "Transferred: "
+    }
+
+    .invite_table tr:not(.colhead) td:nth-child(3):before {
+        content: "Joined: "
+    }
+
+    .invite_table tr:not(.colhead) td:nth-child(4):before {
+        content: "Seen: "
+    }
+
+    .td_dl.m_td_right:before {
+        content: "D: "
+    }
+
+    .td_up.m_td_right:before {
+        content: "U: "
+    }
+
+    .td_ratio.m_td_right:before {
+        content: "R: "
+    }
+
+    table.m_table.collage_table tr:not(.colhead) {
+        display: flex;
+        flex-direction: column
+    }
+
+    .m_table .td_collage_category:before {
+        content: "Category: "
+    }
+
+    .m_table .td_collage_category {
+        order: 2;
+        padding-top: 0
+    }
+
+    .collage_table .td_info {
+        padding-bottom: 0
+    }
+
+    .collage_table .td_updated:before {
+        content: "Updated: "
+    }
+
+    .collage_table .td_updated {
+        order: 3
+    }
+
+    .collage_table .td_author:before {
+        content: "Author: "
+    }
+
+    .collage_table .td_author {
+        order: 3
+    }
+
+    .collage_table .td_torrent_count:before {
+        content: "T: "
+    }
+
+    .collage_table .td_subscribers:before {
+        content: "S: "
+    }
+
+    .collage_table .td_author, .collage_table .td_collage_category, .collage_table .td_updated {
+        margin-left: 1rem
+    }
+
+    .collage_table .td_info .tags a:hover {
+        background: #708090 !important;
+        color: #2f4f4f
+    }
+
+    .collage_table .td_info .tags :not(:empty) {
+        box-sizing: border-box;
+        display: inline-block;
+        font-weight: 400;
+        font-size: .55rem;
+        vertical-align: baseline;
+        color: #4d4d4d;
+        background: #3a3a3a !important;
+        padding: .05rem .5rem;
+        border: none !important;
+        border-radius: 1rem;
+        transition: all .35s
+    }
+
+    #top10 .tags {
+        width: auto
+    }
+
+    .collage_table .td_info {
+        font-size: larger
+    }
+
+    #requests .request_table tr:not(.colhead) td:nth-child(n+2) {
+        padding: 0 6px
+    }
+
+    #requests .request_table tr:not(.colhead) td:nth-child(5):before {
+        content: "Filler: "
+    }
+
+    #requests .request_table tr:not(.colhead) td:nth-child(6):before {
+        content: "Requester: "
+    }
+
+    #requests .request_table tr:not(.colhead) td:nth-child(6) {
+        padding: 0 6px
+    }
+
+    #requests .request_table tr:not(.colhead) td:nth-child(7):before {
+        content: "Added: "
+    }
+
+    #requests .request_table tr:not(.colhead) td:nth-child(8):before {
+        content: "Last Vote: "
+    }
+
+    #requests .request_table tr:not(.colhead) td:nth-child(8) {
+        padding-bottom: 4px
+    }
+
+    .forum_index .last_poster, .forum_index .last_read, .forum_index .last_topic {
+        float: none !important
+    }
+
+    .forum_index .last_topic {
+        display: block
+    }
+
+    #wrapper .td_read {
+        float: left;
+        height: 12px;
+        margin: 3px 5px 0;
+        width: 11px
+    }
+
+    .td_topic_count.m_td_right:before {
+        content: "T: "
+    }
+
+    .td_post_count.m_td_right:before {
+        content: "P: "
+    }
+
+    .td_author:before {
+        content: "Author: "
+    }
+
+    .td_replies.m_td_right:before {
+        content: "R: "
+    }
+
+    .forum_post tbody {
+        align-items: stretch;
+        display: flex;
+        flex-flow: column wrap;
+        width: 100%
+    }
+
+    .forum_post tr:not(.colhead_dark, .hidden) {
+        display: block;
+        position: relative;
+        width: 100%
+    }
+
+    .forum_post tr.colhead_dark {
+        color: transparent;
+        min-height: 50px;
+        padding-left: 54px
+    }
+
+    .forum_post tr.colhead_dark span, .forum_post tr.colhead_dark strong {
+        color: #d9d9d9
+    }
+
+    .forum_post tr.colhead_dark div {
+        display: inline
+    }
+
+    .forum_post .time:after {
+        content: "\A";
+        white-space: pre
+    }
+
+    .forum_post tr.colhead_dark div:nth-child(2) {
+        padding-left: 8px
+    }
+
+    .forum_post .avatar {
+        left: 5px;
+        position: absolute;
+        top: -55px;
+        width: 0;
+        word-break: break-all
+    }
+
+    .forum_post .avatar img {
+        max-height: 50px !important;
+        max-width: 50px !important;
+        min-height: 0;
+        min-width: 0;
+        position: absolute;
+        z-index: 1
+    }
+
+    #rules .m_th_left:before {
+        content: "Rules"
+    }
+
+    .rule_table .nobr {
+        white-space: unset
+    }
+
+    body#friends div.avatar_container img {
+        display: none
+    }
+
+    .colhead, .colhead_dark {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 32px;
+        font-size: 120%;
+        font-weight: 700
+    }
+
+    #header {
+        --row-height: 40px
+    }
+
+    @keyframes delay-pointer-events {
+        0% {
+            visibility: hidden
+        }
+
+        50% {
+            visibility: hidden
+        }
+
+        to {
+            visibility: visible
+        }
+    }
+
+    #header:hover #searchbars input, #nav_logout, #nav_useredit, #nav_userinfo {
+        animation: delay-pointer-events 2s linear
+    }
+
+    #header {
+        background: #4d4d4d;
+        top: 0;
+        height: 0;
+        left: 0;
+        position: fixed;
+        transform: translateY(0);
+        transition: .2s;
+        width: 100%;
+        z-index: 1000;
+        padding-bottom: 32px;
+        opacity: 0
+    }
+
+    #header a {
+        color: #969696
+    }
+
+    #header:hover {
+        height: clamp(200px, var(--row-height)*15, 100%);
+        opacity: 1;
+        transition: all .6s cubic-bezier(1, .01, .3, 1.31);
+        border-bottom: groove #4d4d4d;
+        box-shadow: 0 50px 70px #296898, 0 160px 160px #080808
+    }
+
+    #extra1 {
+        position: fixed;
+        top: 5px;
+        left: calc(50% - 12.5px);
+        display: block;
+        opacity: 1 !important;
+        width: 25px;
+        height: 25px;
+        background-image: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/chevrons-down.svg);
+        background-size: contain;
+        z-index: 500;
+        pointer-events: none
+    }
+
+    #extra4 {
+        background: #4d4d4d;
+        border-radius: 0 0 9px 9px;
+        display: block;
+        right: 0;
+        width: 100%;
+        z-index: 400
+    }
+
+    #extra5 {
+        background-image: url(/svg/site/ops-logo-loop-darkmode.svg);
+        background-position: 0;
+        background-size: auto 30px;
+        background-repeat: no-repeat;
+        pointer-events: none;
+        transform: translateZ(0);
+        width: 15%;
+        z-index: 500
+    }
+
+    #extra4, #extra5 {
+        height: 32px;
+        position: fixed;
+        top: 0
+    }
+
+    #debugging #userinfo_major, #debugging #userinfo_major>* {
+        border: thin dotted #00f;
+        border-radius: 1rem
+    }
+
+    #debugging #userinfo_stats, #debugging #userinfo_stats>* {
+        border: thin dotted pink;
+        border-radius: 1rem
+    }
+
+    #userinfo {
+        position: static
+    }
+
+    #userinfo_minor a, #userinfo_username a {
+        display: block;
+        height: 100%;
+        line-height: 50px;
+        text-align: center
+    }
+
+    #header ul:not(#userinfo_major, #userinfo_stats) {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%
+    }
+
+    #header ul:not(#userinfo_major, #userinfo_stats) li {
+        margin: 0;
+        width: 33.3%
+    }
+
+    #header ul:not(#userinfo_major, #userinfo_stats) a {
+        line-height: var(--row-height)
+    }
+
+    #logo {
+        position: inherit;
+        width: 15%;
+        text-align: center;
+        background: radial-gradient(circle at top left, #27628f, #4d4d4d)
+    }
+
+    #logo, #logo a {
+        height: var(--row-height)
+    }
+
+    #logo a {
+        display: inline-block;
+        background: url(/svg/site/ops-logo-loop-darkmode.svg) 50% no-repeat;
+        background-size: var(--row-height);
+        width: var(--row-height)
+    }
+
+    #logo, #userinfo_username>li {
+        background: radial-gradient(circle at top left, #27628f, #4d4d4d)
+    }
+
+    #userinfo_username {
+        position: absolute;
+        left: 15%;
+        width: 85% !important;
+        x-debug-border: thick solid #00f
+    }
+
+    #nav_userclass {
+        display: none
+    }
+
+    #userinfo_username #nav_userinfo a {
+        width: unset
+    }
+
+    #userinfo_major {
+        left: 2vw;
+        right: auto
+    }
+
+    #userinfo_major, #userinfo_stats {
+        width: 60vw;
+        margin: auto;
+        top: calc(100% - var(--row-height)*10 - 125px);
+        height: calc(var(--row-height)*2.4);
+        flex-direction: column;
+        justify-content: space-around
+    }
+
+    #userinfo_stats {
+        left: auto;
+        right: 2vw;
+        color: #d9d9d9;
+        text-align: right
+    }
+
+    #userinfo_major a, #userinfo_stats a {
+        -webkit-text-decoration-line: underline;
+        text-decoration-line: underline;
+        -webkit-text-decoration-style: dashed;
+        text-decoration-style: dashed
+    }
+
+    #userinfo_stats span {
+        white-space: nowrap
+    }
+
+    #stats_ratio .tooltip {
+        background-color: #212121;
+        border-radius: .45rem;
+        padding-left: .45rem;
+        padding-right: .45rem
+    }
+
+    #menu ul {
+        background: radial-gradient(circle at top left, #27628f, #4d4d4d);
+        bottom: calc(var(--row-height)*7);
+        position: absolute
+    }
+
+    #menu li {
+        background: transparent !important
+    }
+
+    #userinfo_minor {
+        background: radial-gradient(circle at top left, #4d4d4d, #27628f);
+        bottom: calc(var(--row-height)*3);
+        position: absolute
+    }
+
+    #searchbars ul {
+        bottom: 0;
+        height: unset;
+        padding: 0 0 0 6px;
+        position: absolute
+    }
+
+    #searchbars li {
+        height: var(--row-height)
+    }
+
+    #searchbars li:nth-child(-n+3) .search_form {
+        margin: 6px 6px 3px 0
+    }
+
+    #searchbars li:nth-child(n+4) .search_form {
+        margin: 3px 6px 6px 0
+    }
+
+    #header #searchbars input {
+        height: calc(var(--row-height) - 9px)
+    }
+
+    #alerts {
+        display: none
+    }
+
+    #wrapper:has(#alerts):before {
+        content: "";
+        background-image: url(/svg/std/notify-rotate-darkmode-ccc.svg);
+        background-position: top;
+        background-size: auto 32px;
+        background-repeat: no-repeat;
+        left: 15%;
+        pointer-events: none;
+        transform: translateZ(0);
+        width: 28.3333333333%;
+        z-index: 500;
+        height: 32px;
+        position: fixed;
+        top: 0;
+        box-sizing: content-box
+    }
+
+    #extracb1 {
+        display: block;
+        height: 32px;
+        margin: 0;
+        opacity: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 50vw;
+        z-index: 999
+    }
+
+    #extracb1:checked~#wrapper #header {
+        transform: translateY(120%)
+    }
+
+    #extracb1:checked~#wrapper #logo {
+        transform: none
+    }
+
+    #extracb1:checked~#extra1 {
+        transform: translateY(5px) rotate(45deg)
+    }
+
+    #extracb1:checked~#extra2 {
+        opacity: 0
+    }
+
+    #extracb1:checked~#extra3 {
+        transform: translateY(-5px) rotate(-45deg)
+    }
+
+    #taglist tr.label {
+        height: auto;
+        border: thick solid #4d4d4d
+    }
+
+    #taglist tr.label td {
+        background: #3a3a3a;
+        color: #4d4d4d;
+        align-content: center;
+        text-align: center;
+        border: #4d4d4d;
+        width: 100%
+    }
+
+    #taglist tr.label td:after {
+        font-style: italic;
+        content: '\27A4   Use "Hide Tags" above or Profile Settings to hide this list of tags.';
+        border: dotted
+    }
+
+    #taglist tr:not(.label) td {
+        border: .1px solid grey;
+        width: 31% !important;
+        visibility: visible;
+        box-sizing: border-box;
+        display: inline-block;
+        font-weight: 200;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-style: italic;
+        vertical-align: baseline;
+        color: #4d4d4d !important;
+        background: #3a3a3a;
+        padding: .25rem;
+        border-radius: 1rem;
+        margin-bottom: .1rem;
+        transition: all .6s cubic-bezier(.25, .8, .25, 1)
+    }
+}
+
+@media(max-width:575px)and (max-height:575px) {
+    #header {
+        --row-height: 2rem
+    }
+}
+
+@media(max-width:575px)and (height <=503.125px) {
+    #userinfo_major, #userinfo_major>*, #userinfo_stats, #userinfo_stats>* {
+        display: none
+    }
+}
+
+#footer p:last-of-type:after {
+    content: " | Cornflower Caviar for Redacted"
+}
+
+/* Hack fix for hiding badges taken from the official site CSS */
+.hidden {
+    left: -10000px;
+    position: absolute;
+  }
+  .hidden,
+  input.hidden {
+    display: none;
+  }
+
+/* ==================== CORNFLOWER CAVIAR COLOR FIXES ==================== */
+/* White text on blue backgrounds - headers, menu, colheads */
+
+/* Column headers need white text */
+.colhead,
+.colhead_dark,
+#content div.thin div.head {
+    color: #d9d9d9 !important;
+}
+
+.colhead a,
+.colhead_dark a,
+.head a {
+    color: #d9d9d9 !important;
+}
+
+.colhead a:hover,
+.colhead_dark a:hover,
+.head a:hover {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+
+/* Box headers */
+.head {
+    color: #d9d9d9 !important;
+    background: #4d4d4d !important;
+}
+
+.head b,
+.head strong {
+    color: #d9d9d9 !important;
+}
+
+/* Menu text should be white */
+#menu ul li a,
+#menu > ul a,
+#userinfo_username a,
+#userinfo_minor a {
+    color: #d9d9d9 !important;
+}
+
+#menu ul li a:hover,
+#menu > ul a:hover {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Userinfo username area - smooth gradient continuation */
+#userinfo_username {
+    background-color: #525252 !important;
+}
+
+#userinfo_minor {
+    background-color: #575757 !important;
+}
+
+/* Alert bar text */
+.alertbar,
+.alertbar a,
+#alerts,
+#alerts a {
+    color: #d9d9d9 !important;
+}
+
+/* Notification popups */
+#noty_bottomRight_layout_container .noty_message {
+    color: #d9d9d9 !important;
+}
+
+/* Tooltipster on dark backgrounds */
+.tooltipster-default {
+    background-color: #4d4d4d !important;
+    border-color: #969696 !important;
+    color: #d9d9d9 !important;
+}
+
+.tooltipster-default .tooltipster-content {
+    background-color: #4d4d4d !important;
+    color: #d9d9d9 !important;
+}
+
+.tooltipster-default .tooltipster-content a {
+    color: #d9d9d9 !important;
+}
+
+/* Edition info rows - all text white on blue background */
+#torrents #torrent_details .group_torrent td.edition_info,
+.group~.group_torrent.edition,
+.group_torrent.edition,
+tr.edition,
+td.edition_info {
+    background-color: #4d4d4d !important;
+    color: #d9d9d9 !important;
+}
+
+#torrents #torrent_details .group_torrent td.edition_info a,
+.group~.group_torrent.edition a,
+.group_torrent.edition a,
+tr.edition a,
+td.edition_info a,
+.edition_info,
+.edition_info strong,
+.edition_info a {
+    color: #d9d9d9 !important;
+}
+
+/* Tags on edition rows and request rows should be white */
+.group_torrent.edition .tags,
+.group_torrent.edition .tags a,
+tr.edition .tags,
+tr.edition .tags a,
+.edition_info .tags,
+.edition_info .tags a,
+#request_table .tags,
+#request_table .tags a,
+.request_table .tags,
+.request_table .tags a,
+#top10 .tags,
+#top10 .tags a,
+#bookmarks .tags,
+#bookmarks .tags a {
+    color: #d9d9d9 !important;
+}
+
+/* Column headers - ensure white text */
+.colhead,
+.colhead td,
+.colhead th,
+.colhead a,
+.colhead a strong,
+.colhead strong,
+.colhead_dark,
+.colhead_dark td,
+.colhead_dark th,
+.colhead_dark a,
+.colhead_dark a strong,
+.colhead_dark strong {
+    color: #d9d9d9 !important;
+}
+
+/* Discog table highlights */
+#discog_table tr[id^=torrents_] {
+    background-color: #4d4d4d !important;
+}
+
+#discog_table tr[id^=torrents_] strong,
+#discog_table tr[id^=torrents_] a {
+    color: #d9d9d9 !important;
+}
+
+#discog_table > div.box.center {
+    background-color: #4d4d4d !important;
+    color: #d9d9d9 !important;
+}
+
+#discog_table > div.box.center a {
+    color: #d9d9d9 !important;
+}
+
+#discog_table > div.box.center:before {
+    color: #d9d9d9 !important;
+}
+
+/* Tags styling - keep blue on light gray */
+.tags a {
+    color: #969696 !important;
+}
+
+.tags a:hover {
+    color: #d9d9d9 !important;
+}
+
+/* Poll graph bars */
+.poll .graph span {
+    background-color: #4d4d4d !important;
+}
+
+/* Selection color */
+::selection {
+    background-color: #4d4d4d !important;
+    color: #d9d9d9 !important;
+}
+
+/* Links that should remain dark blue on light backgrounds */
+a {
+    color: #969696;
+}
+
+a:hover {
+    color: #d9d9d9;
+}
+
+/* Searchbar styling */
+#searchbars {
+    background-color: #373737 !important;
+}
+
+#searchbars input {
+    background-color: #262626 !important;
+    color: #bdbec0 !important;
+    border-color: #454545 !important;
+}
+
+#searchbars input:focus {
+    background-color: #272828 !important;
+    border-color: #4e879c !important;
+}
+
+/* Select/dropdown styling to match dark inputs */
+select {
+    background-color: #262626 !important;
+    color: #bdbec0 !important;
+    border: 1px solid #454545 !important;
+}
+
+select:focus {
+    background-color: #272828 !important;
+    border-color: #4e879c !important;
+}
+
+/* Dropdown option elements */
+select option {
+    background-color: #262626 !important;
+    color: #d9d9d9 !important;
+}
+
+select option:hover,
+select option:checked {
+    background-color: #c2c2c2 !important;
+    color: #1a1a1a !important;
+}
+
+/* Table row alternation */
+table .rowa:nth-child(odd),
+table .rowb:nth-child(odd) {
+    background-color: #212121 !important;
+}
+
+table .rowa:nth-child(2n),
+table .rowb:nth-child(2n) {
+    background-color: #2a2a2a !important;
+}
+
+/* Torrent table group rows */
+.torrent_table .group {
+    background-color: #252525 !important;
+}
+
+.group_torrent {
+    background-color: #212121 !important;
+}
+
+/* Input fields */
+input[type=date],
+input[type=email],
+input[type=password],
+input[type=search],
+input[type=text],
+input[type=url],
+select,
+textarea {
+    background: #262626 !important;
+    border: 1px solid #454545 !important;
+    color: #d9d9d9 !important;
+}
+
+input[type=date]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=search]:focus,
+input[type=text]:focus,
+input[type=url]:focus,
+select:focus,
+textarea:focus {
+    background: #272828 !important;
+    border: 1px solid #4e879c !important;
+    color: #d9d9d9 !important;
+}
+
+/* Buttons */
+#popup_close,
+button,
+input[type=button],
+input[type=submit] {
+    background: #4d4d4d !important;
+    color: #ffffff !important;
+    border: 1px solid #4d4d4d !important;
+}
+
+#popup_close:hover,
+button:hover,
+input[type=button]:hover,
+input[type=submit]:hover {
+    background: #969696 !important;
+}
+
+/* =====================================================
+   TROUBLESOME AREA #5: Pagination Hover Effects
+   ISSUE: Pagination links needed hover effects but kept shifting layout
+   FIX: Added padding by default (2px 3px) to prevent shift on hover
+        Refined spacing through multiple iterations (6px ? 4px ? 3px)
+        Blue background (#4d4d4d) with white text on hover
+        UPDATE: Changed active page to underline instead of color change
+   ===================================================== */
+/* Linkbox pagination */
+.linkbox > strong {
+    color: #969696 !important;
+    font-weight: 700 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px !important;
+}
+
+.linkbox a,
+.linkbox a strong {
+    color: #969696 !important;
+    padding: 2px 3px;
+    margin-right: 4px;
+    border-radius: 3px;
+    display: inline-block;
+    transition: all 0.2s ease;
+}
+
+.linkbox a:hover,
+.linkbox a:hover strong {
+    color: #d9d9d9 !important;
+    background-color: #4d4d4d !important;
+}
+
+/* SVG link colors */
+svg|a {
+    fill: #969696 !important;
+}
+
+svg|a:hover {
+    fill: #d9d9d9 !important;
+}
+
+/* Form backgrounds */
+form {
+    background-color: #212121 !important;
+}
+
+/* Blockquote styling */
+blockquote {
+    background-color: #dee0e0 !important;
+    border: 1px dashed #afb1b1 !important;
+    color: #d9d9d9 !important;
+}
+
+/* Error/warning messages */
+.error,
+.invalid,
+.warning {
+    color: #b71010 !important;
+}
+
+/* Success messages */
+.r10, .r20, .r50, .r99 {
+    color: #099909 !important;
+}
+
+/* Forum unread indicator */
+.forum_post.forum_unread {
+    border-top: 2px solid #4d4d4d !important;
+}
+
+/* Last read arrow */
+.last_read :before {
+    color: #4d4d4d !important;
+}
+/* =====================================================
+   COLHEAD SORT LINKS - FORCE WHITE
+   ===================================================== */
+/* Ultra-specific selectors for column header sort links */
+table.torrent_table tr.colhead td a,
+table.torrent_table tr.colhead th a,
+table.torrent_table tr.colhead a,
+table tr.colhead td a,
+table tr.colhead th a,
+table tr.colhead a,
+.colhead td a,
+.colhead th a,
+.colhead > td > a,
+.colhead > th > a,
+tr.colhead a,
+tr.colhead td a,
+tr.colhead th a,
+#torrent_table .colhead a,
+#torrent_table tr.colhead td a,
+.torrent_table .colhead a,
+.torrent_table tr.colhead td a {
+    color: #d9d9d9 !important;
+}
+
+table.torrent_table tr.colhead td a:hover,
+table.torrent_table tr.colhead th a:hover,
+table.torrent_table tr.colhead a:hover,
+table tr.colhead td a:hover,
+table tr.colhead th a:hover,
+table tr.colhead a:hover,
+.colhead td a:hover,
+.colhead th a:hover,
+.colhead > td > a:hover,
+.colhead > th > a:hover,
+tr.colhead a:hover,
+tr.colhead td a:hover,
+tr.colhead th a:hover,
+#torrent_table .colhead a:hover,
+#torrent_table tr.colhead td a:hover,
+.torrent_table .colhead a:hover,
+.torrent_table tr.colhead td a:hover {
+    color: #ffffff !important;
+}
+
+/* Same for colhead_dark */
+table tr.colhead_dark td a,
+table tr.colhead_dark th a,
+table tr.colhead_dark a,
+.colhead_dark td a,
+.colhead_dark th a,
+.colhead_dark > td > a,
+.colhead_dark > th > a,
+tr.colhead_dark a,
+tr.colhead_dark td a,
+tr.colhead_dark th a {
+    color: #d9d9d9 !important;
+}
+
+table tr.colhead_dark td a:hover,
+table tr.colhead_dark th a:hover,
+table tr.colhead_dark a:hover,
+.colhead_dark td a:hover,
+.colhead_dark th a:hover,
+tr.colhead_dark a:hover,
+tr.colhead_dark td a:hover,
+tr.colhead_dark th a:hover {
+    color: #ffffff !important;
+}
+
+/* =====================================================
+   COLHEAD ICONS - CONVERT RED TO WHITE
+   ===================================================== */
+/* Use CSS filter to convert red icons to white */
+.colhead img,
+.colhead_dark img,
+tr.colhead img,
+tr.colhead_dark img,
+.colhead td img,
+.colhead_dark td img,
+/* =====================================================
+   TROUBLESOME AREA #6: Column Header Sort Arrow Icons
+   ISSUE: Sort arrow icons were red PNG files, hard to see on blue headers
+   FIX: CSS filter brightness(0) invert(1) converts red to white
+        Applied to all .sign img selectors in colhead/colhead_dark
+   ===================================================== */
+.colhead .sign img,
+.colhead_dark .sign img,
+tr.colhead td.sign img,
+tr.colhead_dark td.sign img,
+.sign.snatches img,
+.sign.seeders img,
+.sign.leechers img {
+    filter: brightness(0) invert(1) !important;
+}
+
+/* =====================================================
+   TROUBLESOME AREA #7: API Keys Input Alignment
+   ISSUE: API Key inputs were misaligned on Settings page
+   FIX: Used display: block and specific margins to force inputs
+        onto separate lines with proper spacing (5px 0 15px 0)
+   NOTE: Checkboxes kept inline, inputs forced to block layout
+   ===================================================== */
+/* Force proper layout for API key fields */
+#api_key_settings .field_div label {
+    line-height: 2.5 !important;
+}
+
+/* Add line breaks after checkboxes and before API Key label */
+#api_key_settings .field_div label br {
+    display: block !important;
+    content: "" !important;
+    margin-top: 10px !important;
+}
+
+/* Style the Name and API Key inputs */
+#api_key_settings .field_div label input[type="text"][name="new_api_key_name"],
+#api_key_settings .field_div label input[type="text"][name="new_api_key"] {
+    display: block !important;
+    margin: 5px 0 15px 0 !important;
+    width: 300px !important;
+}
+
+/* Ensure checkboxes stay inline */
+#api_key_settings .field_div label input[type="checkbox"] {
+    margin: 0 5px 0 10px !important;
+}
+
+/* =====================================================
+   TROUBLESOME AREA #8: Form Label Vertical Alignment
+   ISSUE: Labels not vertically centered with input fields (e.g., invite page email)
+   FIX: Used flexbox with align-items: center for .field_div containers
+        Added vertical-align: middle for table-based forms
+   ===================================================== */
+/* Center labels vertically next to input fields */
+table tr td.label,
+form table tr td.label {
+    vertical-align: middle !important;
+}
+
+/* Center div labels vertically (for invite page) */
+.field_div {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.field_div .label {
+    flex-shrink: 0 !important;
+}
+
+.field_div .input {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+/* =====================================================
+   TROUBLESOME AREA #13: Request Fill Form Layout
+   ISSUE: "Fill request" label not aligned with input, helper text not below input
+   FIX: Override generic .field_div flex for request page forms
+        Use flex-direction: column to stack input and helper text
+        Keep table label alignment via vertical-align: top
+   ===================================================== */
+/* Request page fill form - align label with input, helper text below */
+body#requests form.edit_form .field_div {
+    display: block !important;
+}
+
+body#requests form.edit_form .field_div input[type="text"] {
+    width: 350px !important;
+    display: block !important;
+    margin-bottom: 4px !important;
+}
+
+body#requests form.edit_form .field_div br {
+    display: none !important;
+}
+
+body#requests form.edit_form .field_div strong {
+    display: block !important;
+    font-size: 11px !important;
+    color: #969696 !important;
+    font-weight: 400 !important;
+}
+
+body#requests form.edit_form .submit_div {
+    margin-top: 8px !important;
+}
+
+/* Keep the label vertically aligned to top for multi-line content */
+body#requests tr td.label[valign="top"] {
+    vertical-align: top !important;
+    padding-top: 12px !important;
+}
+
+/* =====================================================
+   TROUBLESOME AREA #9: Badges Page Log Entry Readability
+   ISSUE: Badge log entries lacked visual separation
+   FIX: Added alternating row colors (#212121 / #1f1f1f) with padding
+        Used nth-child(even) selector for stripe effect
+   ===================================================== */
+/* Add alternating row colors for badge log entries */
+.badge--log_entry {
+    background-color: #212121 !important;
+    padding: 10px !important;
+}
+
+.badge--log_entry:nth-child(even) {
+    background-color: #1f1f1f !important;
+}
+
+/* =====================================================
+   TROUBLESOME AREA #10: Upload Page DNU List Readability
+   ISSUE: DNU (Do Not Upload) table header was light, hard to distinguish
+   FIX: Dark grey header background (#333333) with white bold text
+        Added alternating row colors for better readability
+   NOTE: Also fixed green tag examples to blue (#4d4d4d) below
+   ===================================================== */
+/* Make header row darker with white text */
+table#dnulist tr.colhead {
+    background-color: #333333 !important;
+}
+
+table#dnulist tr.colhead td,
+table#dnulist tr.colhead td strong {
+    color: #d9d9d9 !important;
+    font-weight: bold !important;
+}
+
+/* Add alternating row colors for better readability */
+#dnulist tr:not(.colhead) {
+    background-color: #212121 !important;
+}
+
+#dnulist tr:not(.colhead):nth-child(even) {
+    background-color: #1f1f1f !important;
+}
+
+/* Override inline green color for good tag examples to match theme */
+#upload span[style*="color: green"] {
+    color: #6ef7a7 !important;
+}
+
+/* =====================================================
+   TROUBLESOME AREA #11: Staff Link Styling
+   ISSUE: Staff link had persistent blue background unlike other menu items
+   FIX: Multiple override attempts with transparent background
+        Now gets same hover effect as other menu items (see below)
+   WARNING: Background still shows on some pages despite !important
+   ===================================================== */
+/* Make Staff link match other menu items - no background, blue text */
+#menu>ul>#nav_staff,
+#menu>ul>#nav_staff>a {
+    background-color: transparent !important;
+    background: none !important;
+    color: #969696 !important;
+}
+
+#menu>ul>#nav_staff>a:hover {
+    background-color: transparent !important;
+    color: #4d4d4d !important;
+}
+
+/* =====================================================
+   TROUBLESOME AREA #12: Header Navigation Hover Effects
+   ISSUE: Adding hover effects caused links to shift/expand to the left
+          Menu items became taller when padding added vertically
+   FIX: Added padding by default (before hover) to prevent shift
+        For menu items: horizontal padding ONLY (left/right) to maintain height
+        For userinfo links: full padding (2px 4px) is fine
+        Blue background (#4d4d4d) with white text on hover
+   ===================================================== */
+/* Upload, Invite, Donate links - add padding by default to prevent shift */
+#userinfo_major a {
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+}
+
+#userinfo_major a:hover {
+    background-color: #4d4d4d !important;
+    color: #d9d9d9 !important;
+}
+
+/* Up, Down, Ratio, Required links - add padding by default to prevent shift */
+#userinfo_stats a {
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+}
+
+#userinfo_stats a:hover {
+    background-color: #4d4d4d !important;
+    color: #d9d9d9 !important;
+}
+
+/* Menu items (Torrents, Collages, Requests, Forums, etc.) - horizontal padding only to prevent height change */
+#menu>ul li a {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+}
+
+#menu>ul li a:hover {
+    background-color: #4d4d4d !important;
+    color: #d9d9d9 !important;
+}
+
+/* Staff link gets same hover effect as other menu items */
+#menu>ul>#nav_staff>a:hover {
+    background-color: #4d4d4d !important;
+    color: #d9d9d9 !important;
+}
+
+/* =====================================================
+   CHECKBOX ACCENT COLOR
+   ===================================================== */
+/* Make all checkboxes match the Classic Caviar theme */
+input[type="checkbox"] {
+    accent-color: #4d4d4d !important;
+}
+
+input[type="radio"] {
+    accent-color: #4d4d4d !important;
+}
+
+
+
