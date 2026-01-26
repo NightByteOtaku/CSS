@@ -1,0 +1,2882 @@
+/* =====================================================
+   CORNFLOWER UNIFIED CSS
+   =====================================================
+   
+   Based on: REDStage.css (FULL STRUCTURE & LAYOUT)
+   With: Cornflower Caviar color palette
+   Plus: Unified link hover system
+   
+   Key Color Palette (Cornflower):
+   - Page Background: #e1e3e4
+   - Box/Light Grey: #d9dbdb
+   - Darker Alternating: #cfd1d1
+   - Blue Accent (Step 8): #388a38
+   - Logo Overlay (Step 1): #1a5a1a
+   - Link Blue: #154a73
+   - White Text: #f7f7f7
+   - Dark Grey Text: #313131
+   - Menu Gradient: #1a5a1a → #47a247 (10 steps)
+   
+   Unified Link Hover System:
+   - STANDARD: Light bg links get colored bg (#388a38) + white text on hover
+   - INVERTED: Dark bg links get white bg + colored text (#388a38) on hover
+   
+   ===================================================== */
+
+@namespace "http://www.w3.org/1999/xhtml";
+@namespace svg "http://www.w3.org/2000/svg";
+
+:root {
+    --system-ui: system-ui, "Segoe UI", "Roboto", "Ubuntu", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --monospace-ui: "Cascadia Code", "Consolas", "Ubuntu Mono", "Fira Code", "Menlo", "Liberation Mono", "Monaco", monospace
+}
+
+.tooltipster-default .tooltipster-content, body, button, h1, h2, h3, h4, h5, h6, input, select, textarea {
+    font-family: var(--system-ui)
+}
+
+code, pre {
+    font-family: var(--monospace-ui);
+    font-optical-sizing: auto;
+    font-variant-ligatures: no-contextual
+}
+
+* {
+    box-sizing: inherit
+}
+
+body {
+    background-color: #e1e3e4;
+    box-sizing: border-box;
+    color: #313131;
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 0 8px
+}
+
+code, pre {
+    color: #4a4a4a
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #313131;
+    line-height: normal;
+    margin: 8px 0;
+    max-width: 100%
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    color: #388a38
+}
+
+h1, h2 {
+    font-size: 23px
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600
+}
+
+h3, h4 {
+    font-size: 18px
+}
+
+h4, h5 {
+    font-size: 16px;
+    font-weight: 600
+}
+
+a {
+    color: #154a73;
+    text-decoration: none
+}
+
+a:hover {
+    color: #154a73
+}
+
+a:active, a:focus, button:active, button:focus, input:active, input:focus, select:active, select:focus, textarea:active, textarea:focus {
+    outline: 0
+}
+
+.body .box.pad:not(#reply_box), .box .box.pad, .main_column .box.pad:not(#reply_box) {
+    background-color: rgba(110.7, 149, 169, .15);
+    border: 2px solid #b0b3b3;
+    margin: 8px;
+    border-radius: .25rem
+}
+
+#content>.thin:not(:has(table)), .box, .box2, .main_column:not(:has(table)), .sidebar, body#user .main_column {
+    overflow: hidden
+}
+
+.clear:after, .profileinfo:before {
+    content: ""
+}
+
+#menu>ul a, .nobr {
+    white-space: nowrap
+}
+
+#covers .stats .remove, .add_bookmark, .sidebar {
+    float: right
+}
+
+#header ul, .poll {
+    list-style: none
+}
+
+.body img, .box_request_desc:not(.head) img, .comment:not(.head) img, .news_post:not(.head) img, .profileinfo:not(.head) img, .wiki_article img {
+    vertical-align: middle
+}
+
+svg|a {
+    fill: #154a73
+}
+
+svg|a:hover {
+    fill: #154a73
+}
+
+b, strong {
+    color: #313131;
+    font-weight: 600
+}
+
+ol, ul {
+    margin: 12px;
+    padding-left: 16px
+}
+
+ol.nobullet, ul.nobullet {
+    list-style-type: none
+}
+
+li {
+    margin-bottom: 4px
+}
+
+li:last-child {
+    margin-bottom: 0
+}
+
+blockquote {
+    background-color: rgba(110.7, 149, 169, .15);
+    border: 1px dashed #b0b3b3;
+    margin: 12px;
+    padding: 12px
+}
+
+::selection {
+    background-color: #388a38;
+    color: #f7f7f7
+}
+
+table {
+    background-color: #d9dbdb
+}
+
+table .rowa, table .rowb {
+    border-top: 2px solid rgba(45, 57, 58, .3294117647)
+}
+
+/* Alternating row colors */
+#upload tr:nth-child(2n), table .rowa:nth-child(2n), table .rowb:nth-child(2n) {
+    background-color: #d0d2d2
+}
+
+table {
+    border-collapse: collapse;
+    margin: 8px 0;
+    width: 100%
+}
+
+#upload tr:nth-child(odd), table .rowa:nth-child(odd), table .rowb:nth-child(odd) {
+    background-color: #c8cbcb
+}
+
+table ul.options_list {
+    margin: 0;
+    padding: 0
+}
+
+#content div.thin div.head, .colhead, .colhead_dark {
+    background-color: #388a38;
+    color: #f7f7f7;
+    line-height: 18px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1
+}
+
+/* Force white text in column headers */
+.colhead td, .colhead_dark td,
+.colhead a, .colhead_dark a,
+.colhead strong, .colhead_dark strong {
+    color: #f7f7f7 !important;
+}
+
+.colhead_dark td, .colhead td {
+    padding-bottom: 12px;
+    padding-top: 12px
+}
+
+.colhead_dark td.sign, .colhead td.sign {
+    text-align: center !important
+}
+
+.colhead_dark td.sign .tooltip, .colhead td.sign .tooltip {
+    display: inline;
+    max-height: 13px;
+    max-width: 13px
+}
+
+td {
+    padding: 4px 6px
+}
+
+td:first-child {
+    padding-left: 12px
+}
+
+td:last-child {
+    padding-right: 12px
+}
+
+form {
+    background-color: #d9dbdb
+}
+
+form table td.label {
+    color: #313131;
+    padding-top: 9px;
+    font-weight: 600;
+    text-align: left;
+    width: 180px
+}
+
+button, input, select, textarea {
+    font-size: 12px
+}
+
+#popup_close, button, input[type=button], input[type=submit] {
+    background: #388a38;
+    border: none;
+    border-radius: 1.5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 600;
+    height: 32px;
+    padding: 0 12px
+}
+
+#popup_close:active, button:active, input[type=button]:active, input[type=submit]:active {
+    background: #1f5580
+}
+
+#popup_close:hover, button:hover, input[type=button]:hover, input[type=submit]:hover {
+    background: #3a8bc4
+}
+
+input[type=date], input[type=email], input[type=password], input[type=search], input[type=text], select, textarea {
+    background: #ffffff;
+    border: 1px solid #9a9a9a;
+    color: #313131;
+    height: 32px;
+    padding: 0 8px
+}
+
+input[type=date]:focus, input[type=email]:focus, input[type=password]:focus, input[type=search]:focus, input[type=text]:focus, select:focus, textarea:focus {
+    background: #ffffff;
+    border: 1px solid #388a38;
+    color: #1a1a1a
+}
+
+textarea {
+    min-height: 96px;
+    padding-top: 6px;
+    width: 100%
+}
+
+.body, .head, .pad {
+    padding: 12px
+}
+
+span.size1 {
+    font-size: .75em
+}
+
+span.size2 {
+    font-size: 1em
+}
+
+span.size3 {
+    font-size: 1.25em
+}
+
+span.size4 {
+    font-size: 1.5em
+}
+
+span.size5 {
+    font-size: 1.75em
+}
+
+span.size6 {
+    font-size: 2em
+}
+
+span.size7 {
+    font-size: 2.25em
+}
+
+span.size8 {
+    font-size: 2.5em
+}
+
+span.size9 {
+    font-size: 2.75em
+}
+
+span.size10 {
+    font-size: 3em
+}
+
+strong.important_text {
+    color: #b71010
+}
+
+strong.important_text_alt {
+    color: #099909
+}
+
+.error, .invalid, .new, .r00, .r01, .r02, .r03, .warning {
+    color: #b71010
+}
+
+.r04, .r05, .r06, .r07, .r08, .r09 {
+    color: #f9e340
+}
+
+.r10, .r20, .r50, .r99, .vote_tag_up {
+    color: #099909
+}
+
+.small_upvote, .small_upvoted, .vote_album_up, .vote_artist_up, .vote_tag_up {
+    font-weight: bolder;
+    color: #099909
+}
+
+.small_downvote, .small_downvoted, .vote_album_down, .vote_artist_down, .vote_tag_down {
+    font-weight: bolder;
+    color: #b71010
+}
+
+#wrapper {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 1020px
+}
+
+.main_column {
+    flex: 3
+}
+
+.sidebar {
+    flex: 1
+}
+
+.box, .box2 {
+    background-color: #d9dbdb;
+    margin-bottom: 8px;
+    margin-top: 8px
+}
+
+table.box, table.box2 {
+    overflow: auto
+}
+
+.head {
+    background-color: #388a38;
+    color: #f7f7f7 !important;
+    line-height: 18px
+}
+
+.head a,
+.head strong,
+.head b {
+    color: #f7f7f7 !important;
+}
+
+.min_padding {
+    margin: 0;
+    padding: 0
+}
+
+.clear:after {
+    display: block;
+    height: 0;
+    visibility: visible
+}
+
+.profileinfo:before {
+    clear: both;
+    display: table
+}
+
+.box.pad .session_table.border, .box.pad:has(.session_table.border) {
+    overflow: scroll !important
+}
+
+.forum_post.forum_unread {
+    border-top: 2px solid #fed100
+}
+
+.forum_post .avatar {
+    padding: 0;
+    width: 150px
+}
+
+.forum_post .avatar img {
+    display: block;
+    height: auto;
+    max-height: 400px !important;
+    max-width: 150px !important;
+    min-width: 150px;
+    width: auto
+}
+
+.forum_post .body img, .sidebar img {
+    max-width: 100%
+}
+
+@media screen {
+    .forum_post .body img {
+        max-width: 100%
+    }
+}
+
+.forum_index h4, .forum_list h4 {
+    font-size: 12px
+}
+
+.forum_index h3, .forum_list h3 {
+    margin-top: 24px
+}
+
+.forum_index td[style*="width: 2%"], .forum_list td[style*="width: 2%"] {
+    width: 24px !important
+}
+
+.last_read {
+    margin-left: 8px
+}
+
+.last_read :before {
+    content: "\27A4";
+    color: #154a73;
+    display: inline-block
+}
+
+#userinfo_minor:before, .linkbox br {
+    content: ""
+}
+
+#nav_logchecker {
+    display: block
+}
+
+.read {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/document.svg) 50% no-repeat
+}
+
+.unread {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/document-round.svg) 50% no-repeat
+}
+
+.read_locked {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/lock.svg) 50% no-repeat
+}
+
+.unread_locked {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/lock-round.svg) 50% no-repeat
+}
+
+.read_sticky {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/pin.svg) 50% no-repeat
+}
+
+.unread_sticky {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/pin-round.svg) 50% no-repeat
+}
+
+.read_locked_sticky {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/pin-and-lock.svg) 50% no-repeat
+}
+
+.unread_locked_sticky {
+    background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/pin-and-lock-round.svg) 50% no-repeat
+}
+
+#footer {
+    text-align: center
+}
+
+#covers .cover_seperator, #noty_bottomRight_layout_container .brackets:after, #noty_bottomRight_layout_container .brackets:before {
+    display: none
+}
+
+.thin>.header h1, .thin>.header h2, .thin>.header h3 {
+    flex: 1 0 auto
+}
+
+#covers .pad, #covers p {
+    margin: 0;
+    padding: 0
+}
+
+#add_cover_div>div:first-child, #artist .sidebar .box_image div:last-child {
+    padding: 0 !important
+}
+
+div#flip_view_1 div#similar-artist .name {
+    border: 1px solid #313131;
+    background: rgba(200, 200, 200, .7);
+    color: #313131;
+    margin: 0;
+    padding: 0 5px
+}
+
+#covers img {
+    width: 100%
+}
+
+#covers .stats {
+    margin: 0 8px 8px;
+    overflow: hidden
+}
+
+#add_cover_div>div:first-child .additional_add_artists {
+    margin: 8px 12px
+}
+
+#add_cover_div .add_form input[type=text] {
+    margin-bottom: 8px;
+    width: 100%
+}
+
+#artist .sidebar .box_image img {
+    max-width: 100% !important
+}
+
+.box_artists .brackets, .box_tags .edit_tags_votes .brackets {
+    margin: 0 4px
+}
+
+.box_artists .brackets:last-child, .box_tags .edit_tags_votes .brackets:last-child {
+    margin-right: 0
+}
+
+.box_artists .brackets:after, .box_artists .brackets:before, .box_tags .edit_tags_votes .brackets:after, .box_tags .edit_tags_votes .brackets:before {
+    content: "";
+    display: none
+}
+
+.box_addartists_similar form, .box_addartists form, .box_addtag form, .box_search form, .box_zipdownload form {
+    display: flex;
+    flex-flow: row wrap
+}
+
+.box_addartists_similar input[type=text], .box_addartists_similar select, .box_addartists input[type=text], .box_addartists select, .box_addtag input[type=text], .box_addtag select, .box_search input[type=text], .box_search select, .box_zipdownload input[type=text], .box_zipdownload select {
+    flex: 1 1 auto;
+    margin-right: 8px;
+    width: auto
+}
+
+.box_artists ul.stats.nobullet li {
+    content: "";
+    display: block;
+    clear: both
+}
+
+#AddArtists input, #AddArtists select {
+    margin-bottom: 8px;
+    width: 100%
+}
+
+.box_addtag .body strong {
+    display: block;
+    font-weight: 400;
+    margin-top: 8px
+}
+
+.box_addtag .body br {
+    display: none
+}
+
+.add_torrent_container .field_div input {
+    width: 100%
+}
+
+.add_torrent_container form>span:last-child {
+    display: inline-block;
+    margin-top: 8px
+}
+
+.box_zipdownload input, .box_zipdownload select {
+    margin-bottom: 8px;
+    margin-right: 0;
+    width: 100% !important
+}
+
+.box_zipdownload input[type=submit] {
+    margin-bottom: 0
+}
+
+.box_zipdownload #list {
+    margin: 0 0 8px;
+    width: 100%
+}
+
+.box_zipdownload #formats {
+    margin-right: 8px;
+    width: 170px !important
+}
+
+.torrent_table {
+    background-color: #d0d2d2
+}
+
+.torrent_table tr:not(.colhead, .colhead_dark) {
+    border-top: 2px solid rgba(45, 57, 58, .5333333333)
+}
+
+.torrent_table tr .number_column:not(:last-child) {
+    padding-right: 6px
+}
+
+.torrent_table .group {
+    background-color: #c8cbcb
+}
+
+.group_torrent {
+    background-color: #d9dbdb
+}
+
+/* Edition info on blue background - white text */
+#torrents #torrent_details .group_torrent td.edition_info,
+.group~.group_torrent.edition,
+.group_torrent.edition,
+tr.edition,
+td.edition_info {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+}
+
+/* Edition info links and text - white */
+#torrents #torrent_details .group_torrent td.edition_info a,
+.group~.group_torrent.edition a,
+.group_torrent.edition a,
+tr.edition a,
+td.edition_info a,
+.edition_info,
+.edition_info strong,
+.edition_info a {
+    color: #f7f7f7 !important;
+}
+
+/* Tags on edition rows should be white */
+.group_torrent.edition .tags,
+.group_torrent.edition .tags a,
+tr.edition .tags,
+tr.edition .tags a,
+.edition_info .tags,
+.edition_info .tags a {
+    color: #f7f7f7 !important;
+}
+
+/* Discog table (Artist page) - Jump to, Albums, EPs sections */
+#discog_table tr[id^=torrents_] {
+    background-color: #388a38 !important;
+}
+
+#discog_table tr[id^=torrents_] strong,
+#discog_table tr[id^=torrents_] a {
+    color: #f7f7f7 !important;
+}
+
+/* Jump to navigation box */
+#discog_table > div.box.center {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+}
+
+#discog_table > div.box.center a {
+    color: #f7f7f7 !important;
+}
+
+#discog_table > div.box.center:before {
+    color: #f7f7f7 !important;
+}
+
+.torrentdetails .linkbox {
+    margin-bottom: 6px
+}
+
+.group_info {
+    word-break: break-all
+}
+
+.big_info {
+    padding-bottom: 0;
+    padding-top: 0
+}
+
+.big_info .group_image {
+    margin-right: 8px
+}
+
+.big_info .group_info {
+    margin: 4px
+}
+
+.big_info .group_info:after {
+    display: none
+}
+
+/* Tag styling - blue ovals */
+.tags a {
+    color: #f7f7f7;
+    font-size: 11px;
+    background-color: #388a38;
+    padding: 1px 6px;
+    border-radius: 10px;
+    display: inline-block;
+    margin: 1px 2px;
+}
+
+.tags a:hover {
+    background-color: #1f4e72;
+    color: #f7f7f7;
+}
+
+/* Top 10/100/250 pages - ensure white text on blue tag ovals */
+#top10 .tags,
+#top10 .tags a {
+    color: #f7f7f7 !important;
+}
+
+.group_info>span:first-child, .group_torrent td:first-child>span, .torrent_links_block {
+    color: #5f5f5f;
+    float: right;
+    margin-right: 4px
+}
+
+.add_bookmark {
+    margin-right: 4px
+}
+
+.group_torrent:not(.edition) td:first-child {
+    padding-left: 24px
+}
+
+.torrent_table .group td:first-child {
+    padding-left: 4px
+}
+
+.hide_torrents>a, .show_torrents>a {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 100%;
+    position: relative;
+    text-align: center;
+    width: 18px
+}
+
+.show_torrents>a:after {
+    content: "\25B6"
+}
+
+.hide_torrents>a:after {
+    content: "\25BC"
+}
+
+.group_torrent .edition_info {
+    border-top: 1px solid transparent;
+    padding-left: 34px;
+    position: relative
+}
+
+.group_torrent .edition_info a {
+    display: block;
+    font-size: 16px;
+    left: 0;
+    line-height: 27px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 22px
+}
+
+#artist .td_info>a {
+    margin-left: -8px
+}
+
+.colhead_dark td[width*="70%"], .colhead td[width*="70%"] {
+    width: 100%
+}
+
+.colhead .cats_col, .colhead_dark .cats_col {
+    height: auto;
+    padding: 0
+}
+
+pre {
+    white-space: pre-wrap
+}
+
+.log_section pre {
+    line-height: 1.4
+}
+
+#content .header>h1, #content .header>h2, #content .header>h3, #content .thin>h1, #content .thin>h2, #content .thin>h3 {
+    margin-bottom: 0;
+    margin-top: 16px
+}
+
+ul.collage_images {
+    margin: 0;
+    width: 100%
+}
+
+ul.collage_images li {
+    display: block;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    width: 20%
+}
+
+ul.collage_images li a, ul.collage_images li a img {
+    height: 100%;
+    position: absolute;
+    width: 100%
+}
+
+ul.collage_images li:before {
+    content: "";
+    float: left;
+    padding-top: 100%
+}
+
+ul.collage_images li a {
+    display: block;
+    left: 0;
+    top: 0
+}
+
+ul.collage_images li a>span {
+    height: auto;
+    left: 0;
+    margin: 6px;
+    position: absolute;
+    top: 0;
+    width: auto
+}
+
+.recent {
+    table-layout: fixed
+}
+
+.recent tr:not(.colhead, .colhead_dark)>td {
+    padding: 0;
+    position: relative
+}
+
+.recent tr:not(.colhead, .colhead_dark)>td:before {
+    content: "";
+    float: left;
+    padding-top: 100%
+}
+
+.recent tr:not(.colhead, .colhead_dark)>td a {
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%
+}
+
+.recent tr:not(.colhead, .colhead_dark)>td a img {
+    height: 100%;
+    position: absolute;
+    width: 100%
+}
+
+#userform #settings_sections h2 a, .rule_short {
+    color: #154a73
+}
+
+.poll li {
+    margin-bottom: 2px
+}
+
+.poll .graph {
+    background-color: #cdd0d0;
+    display: block;
+    height: 8px;
+    margin-bottom: 12px
+}
+
+.poll .graph span {
+    background-color: #388a38;
+    display: block;
+    float: left;
+    height: 8px
+}
+
+.lightbox {
+    align-items: center;
+    background-color: rgba(0, 0, 0, .32);
+    inset: 0 0 0 0;
+    cursor: pointer;
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin: auto;
+    position: fixed;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index: 1000
+}
+
+.lightbox img {
+    box-shadow: 0 0 32px 6px rgba(0, 0, 0, .32);
+    display: block;
+    max-height: 92%;
+    max-width: 92%
+}
+
+#footer {
+    width: 100%;
+    color: #5f5f5f;
+    font-synthesis: 11px;
+    margin: 32px auto 16px
+}
+
+#footer p {
+    margin: 0
+}
+
+#messageform textarea, #quickreplytext textarea {
+    margin: 0 0 12px
+}
+
+#quickreplytext br:last-child {
+    display: none
+}
+
+.rule_summary {
+    padding: 24px !important
+}
+
+.golden_rules {
+    margin: 0;
+    padding: 0
+}
+
+.rule_wrap {
+    margin-bottom: 8px
+}
+
+#menu>ul, #userinfo_username .username, .album_votes .favoritecount {
+    font-weight: 600
+}
+
+/* Menu gradient - Cornflower blue shades (match redacted-cornflower exactly) */
+#menu li:nth-child(2) {
+    background-color: #1a5a1a
+}
+
+#menu li:nth-child(3) {
+    background-color: #1f621f
+}
+
+#menu li:nth-child(4) {
+    background-color: #246a24
+}
+
+#menu li:nth-child(5) {
+    background-color: #297229
+}
+
+#menu li:nth-child(6) {
+    background-color: #2e7a2e
+}
+
+#menu li:nth-child(7) {
+    background-color: #338233
+}
+
+#menu li:nth-child(8) {
+    background-color: #388a38
+}
+
+#menu li:nth-child(9) {
+    background-color: #3d923d
+}
+
+#menu li:nth-child(10) {
+    background-color: #429a42
+}
+
+/* Since Staff link (nth-child 10) is absolutely positioned out of flow,
+   userinfo_username visually continues from Wiki (nth-child 9: #3d923d)
+   Step: +5R/+8G/+5B for green */
+#userinfo_username {
+    background-color: #429a42;  /* Visual step 9: continues gradient from Wiki */
+    right: 50px
+}
+
+#userinfo_minor {
+    background-color: #47a247   /* Visual step 10: chevron completes the gradient */
+}
+
+/* Menu text should be white */
+#menu ul li a,
+#menu > ul a,
+#userinfo_username a,
+#userinfo_minor a {
+    color: #f7f7f7 !important
+}
+
+#inbox #content .search_form input[type=search], #wiki #content .search_form input[type=search] {
+    margin-top: 8px;
+    width: 100% !important
+}
+
+#searchbox {
+    margin-bottom: 12px
+}
+
+#inbox .manage_form .box {
+    padding: 0
+}
+
+#inbox .unreadpm {
+    background: hsla(0, 0%, 100%, .25)
+}
+
+#wiki .navigation_list {
+    margin: 0;
+    padding: 0
+}
+
+#wiki .box_info ul {
+    margin: 0
+}
+
+#rules #content .thin .header p {
+    display: block;
+    margin: 0 0 8px;
+    width: 100%
+}
+
+.profileinfo img {
+    max-width: 100%
+}
+
+#user .box>.head {
+    height: auto !important
+}
+
+#user .box>.head span[style="float: left;"]:first-child {
+    float: none !important
+}
+
+#user .avatar_container img {
+    max-height: 400px;
+    max-width: 150px
+}
+
+#user #userform {
+    background-color: transparent;
+    width: calc(100% - 248px)
+}
+
+#userform #settings_sections h2 {
+    font-size: 12px;
+    line-height: 1.6
+}
+
+#userform #settings_sections h2 a:hover {
+    color: #388a38
+}
+
+#userform #settings_sections input {
+    margin-top: 8px
+}
+
+/* Menu hover effects - use subtle white overlay like REDstage */
+#menu>ul a:hover {
+    color: #ffffff !important;
+    background-color: hsla(0, 0%, 100%, .2) !important
+}
+
+/* Userinfo dropdown hover - use subtle white overlay like REDstage */
+#userinfo_minor:hover a:hover,
+#userinfo_username:hover a:hover {
+    color: #ffffff !important;
+    background-color: hsla(0, 0%, 100%, .25) !important
+}
+
+#torrents .filter_torrents .ft_submit {
+    display: flex;
+    flex-flow: row nowrap
+}
+
+#torrents .filter_torrents .ft_submit input {
+    margin-right: 4px
+}
+
+#torrents .filter_torrents .ft_submit span {
+    order: 2
+}
+
+#votes {
+    position: relative
+}
+
+.album_votes {
+    line-height: normal
+}
+
+#collages.collage_table .colhead td:last-child, #personal_collages .colhead td:last-child, .filelist_table .colhead_dark td:last-child, .forum_index .colhead td[style*="width: 7%"] {
+    text-align: right
+}
+
+.search_form {
+    margin: 8px 0
+}
+
+@media(min-width:575px) {
+    .search_form {
+        overflow: hidden
+    }
+}
+
+.search_form div.submit {
+    margin: 12px;
+    text-align: center
+}
+
+.box.pad .search_form, .search_form .filter_torrents, .search_form .filter_torrents div.submit, .searchbars .search_form, .sidebar .search_form {
+    margin: 0
+}
+
+.box2 table:not(.layout), .box table:not(.layout) {
+    border: 2px solid rgba(45, 57, 58, .5333333333);
+    margin: 8px 0
+}
+
+span[style*="color: green"] {
+    color: #099909 !important
+}
+
+span[style*="color: red"] {
+    color: #b71010 !important
+}
+
+span[style*="color: blue"] {
+    color: #154a73 !important
+}
+
+.filelist_table td, .reportinfo_table, .torrentdetails, .wrap_overflow, blockquote {
+    -webkit-hyphens: unset;
+    -ms-hyphens: unset;
+    hyphens: unset;
+    word-wrap: unset
+}
+
+.filelist_table td, .reportinfo_table, .torrentdetails {
+    background-color: rgba(110.7, 149, 169, .15)
+}
+
+#bookmarks #torrent_table tr:not(.colhead, .colhead_dark) td:nth-child(2) {
+    border-top: 1px solid transparent;
+    height: 100%;
+    padding: 0;
+    position: relative
+}
+
+#bookmarks .torrent_row td:nth-child(3)>span:first-child {
+    float: right
+}
+
+#quickpost {
+    width: 100% !important
+}
+
+.donation_info {
+    margin-left: 0;
+    margin-right: 0
+}
+
+#messageform #buttons input[type=button], #messageform #buttons label, #quickpostform .preview_submit input[type=button], #quickpostform .preview_submit label, .forum_post .colhead_dark input[type=button], .forum_post .colhead_dark label {
+    margin-right: 4px
+}
+
+.thin:not(.linkbox)>:not(.two_columns) {
+    width: 100%
+}
+
+.thin>table {
+    width: calc(100% - 8px)
+}
+
+.thin>.sidebar~* {
+    width: auto
+}
+
+/* =====================================================
+   HEADER / MENU / USERINFO LAYOUT (Critical!)
+   ===================================================== */
+#header {
+    display: flex;
+    flex-direction: column
+}
+
+#alerts {
+    order: 10
+}
+
+.wrap_overflow {
+    word-break: break-word !important
+}
+
+#sortable {
+    width: unset !important;
+    cursor: move
+}
+
+#sortable li {
+    word-break: break-all;
+    cursor: move;
+    border: thin transparent;
+    border-radius: 2rem
+}
+
+#sortable label {
+    cursor: move
+}
+
+#sortable li:hover {
+    background-color: rgba(0, 0, 0, .1333333333)
+}
+
+form input {
+    vertical-align: center
+}
+
+#discog_table tr[id^=torrents_] {
+    background-color: #388a38
+}
+
+#discog_table tr[id^=torrents_] :not(a.tooltip.brackets) strong {
+    font-size: large;
+    color: #f7f7f7
+}
+
+#discog_table .discog strong a, #discog_table td.td_info.big_info div.group_info.clear strong a {
+    font-size: 115%;
+    color: #388a38
+}
+
+div#discog_table td.td_info:not(span.torrent_links_block)>a {
+    -webkit-padding-start: 1em;
+    padding-inline-start: 1em
+}
+
+#discog_table>div.box.center {
+    background-color: #388a38;
+    text-align: left;
+    padding: 12px 12px 12px 11rem
+}
+
+#discog_table>div.box.center:before {
+    color: #f7f7f7 !important;
+    font-size: large !important;
+    content: "\21E9   Jump to" !important;
+    font-weight: 600;
+    position: absolute;
+    margin-left: -9rem;
+    margin-top: -.25rem
+}
+
+#discog_table>div.box.center a {
+    margin: 0 8px
+}
+
+#discog_table>div.box.center .brackets:after, #discog_table>div.box.center .brackets:before {
+    display: none
+}
+
+.tooltipster-base {
+    box-shadow: 0 0 8px rgba(0, 0, 0, .25);
+    width: auto !important
+}
+
+.tooltipster-default {
+    background-color: #e1e3e4;
+    border: 4px solid #388a38;
+    border-radius: 2.5px;
+    color: #313131
+}
+
+.tooltipster-default .tooltipster-content {
+    background-color: #e1e3e4;
+    color: #313131;
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 4px 6px
+}
+
+.tooltipster-default .tooltipster-content a {
+    background-color: #e1e3e4;
+    color: #154a73;
+    font-weight: 600
+}
+
+.tooltipster-default .tooltipster-content a:hover {
+    color: #388a38
+}
+
+.cats_applications, .cats_audiobooks, .cats_comedy, .cats_comics, .cats_ebooks, .cats_elearningvideos, .cats_music {
+    width: 0;
+    height: 80px
+}
+
+body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .cats_comedy, body#collage .cats_comics, body#collage .cats_ebooks, body#collage .cats_elearningvideos, body#collage .cats_music {
+    height: 2rem
+}
+
+.cats_music {
+    border-right: thin solid #388a38
+}
+
+.cats_applications {
+    border-right: thick solid silver
+}
+
+.cats_audiobooks {
+    border-right: thick solid #6495ed
+}
+
+.cats_comedy {
+    border-right: thick solid #00bfff
+}
+
+.cats_comics {
+    border-right: thick solid gold
+}
+
+.cats_ebooks {
+    border-right: thick solid #d2691e
+}
+
+.cats_elearningvideos {
+    border-right: thick solid #9370db
+}
+
+.thin>.header .linkbox {
+    align-self: flex-end;
+    flex: 1 0 auto;
+    margin-top: 8px
+}
+
+.thin>.header {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%
+}
+
+#header, #userinfo {
+    position: relative
+}
+
+#header ul {
+    margin: 0;
+    padding: 0
+}
+
+#header li {
+    margin: 0
+}
+
+/* Logo */
+@media only screen and (min-width:575px) {
+    #logo {
+        box-sizing: content-box;
+        height: 42px;
+        padding: 24px 8px 16px;
+        width: 280px;
+        overflow: visible
+    }
+
+    /* Vinyl headphones logo on left (unfiltered) */
+    #logo a {
+        background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/vinyl-headphones.png) left center/55px no-repeat;
+        position: relative
+    }
+
+    /* Headphones logo on right with color filter to match darkest menu step #1a5a1a */
+    #logo a::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -5px;
+        width: 200px;
+        height: 100%;
+        background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/89930g.png) right center/200px no-repeat;
+        filter: brightness(0) saturate(100%) invert(24%) sepia(82%) saturate(1051%) hue-rotate(90deg) brightness(95%) contrast(95%)
+    }
+
+    /* Height increased to 60px to prevent image clipping, negative margin centers it vertically */
+    #logo>a {
+        display: block;
+        height: 60px;
+        margin-top: -9px
+    }
+}
+
+/* Menu layout - CRITICAL FLEX RULES */
+#menu>ul {
+    display: flex;
+    flex-flow: row nowrap;
+    font-size: 13px;
+    overflow: hidden;
+    width: calc(100% - 149px)
+}
+
+#menu>ul li {
+    flex: 1 1 auto
+}
+
+#menu>ul a {
+    display: block;
+    height: 100%;
+    line-height: 50px;
+    text-align: center
+}
+
+#nav_index {
+    display: none
+}
+
+#userinfo_minor:hover a, #userinfo_username:hover a {
+    display: block
+}
+
+#userinfo_username #nav_userinfo>a {
+    display: block;
+    font-size: 13px;
+    line-height: 50px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100px
+}
+
+#userinfo_major>li, #userinfo_stats>li, .linkbox .brackets {
+    margin-left: 8px
+}
+
+/* Space Upload, Invite, Donate, Staff links evenly - Staff stays fixed, others spread left */
+#userinfo_major>li {
+    margin-left: 16px
+}
+
+#userinfo_major, #userinfo_stats {
+    display: flex;
+    flex-flow: row nowrap;
+    position: absolute;
+    right: 8px
+}
+
+#userinfo_major {
+    font-size: 13px;
+    right: 57px;
+    top: -53px
+}
+
+#userinfo_stats {
+    font-size: 13px;
+    top: -31px
+}
+
+#menu ul li:not(#nav_staff) a, #userinfo a.username {
+    color: #f7f7f7;
+    text-shadow: none
+}
+
+#menu {
+    border-radius: 5px 5px 0 0;
+    overflow: hidden
+}
+
+@media(min-width:575px) {
+    .thin:last-child>:not(.two_columns) {
+        margin: 4px
+    }
+
+    #nav_donate .tooltip:after {
+        color: red;
+        content: "\2764\FE0F";
+        font-size: 75%;
+        vertical-align: top
+    }
+
+    #nav_staff {
+        font-weight: 400
+    }
+
+    #menu>ul>#nav_staff {
+        display: inline;
+        font-size: 13px;
+        position: absolute;
+        right: 8px;
+        top: 29px
+    }
+
+    #menu>ul>#nav_staff>a {
+        line-height: 1.6;
+        padding: 0 3px 1px 3px;
+        border-radius: 3px;
+        transition: all 0.2s ease;
+    }
+
+    #menu>ul>#nav_staff>a:hover {
+        background-color: #388a38 !important;
+        color: #f7f7f7 !important;
+    }
+
+    #userinfo_minor:before {
+        background: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/chevrons-down.svg) no-repeat;
+        filter: brightness(200%);
+        background-size: 28px;
+        background-position: 50%;
+        display: block;
+        height: 50px;
+        line-height: 50px;
+        width: 50px
+    }
+
+    #userinfo_minor a, #userinfo_username a {
+        display: none;
+        line-height: 32px;
+        padding: 0 8px;
+        width: 150px
+    }
+
+    #userinfo_minor:hover:before {
+        margin-left: 100px
+    }
+
+    #userinfo_minor {
+        background-color: #47a247;
+        border-radius: 0 5px 0 0;
+        right: 0
+    }
+
+    #userinfo_minor, #userinfo_username {
+        position: absolute;
+        z-index: 900
+    }
+
+    #userinfo_minor:hover, #userinfo_username:hover {
+        z-index: 800
+    }
+
+    #userinfo_username:hover {
+        border-radius: 0 10px 0 0;
+        right: 0
+    }
+
+    .settings_sidebar {
+        margin-left: 8px
+    }
+
+    #userform #settings_sections {
+        width: 240px
+    }
+}
+
+#menu>ul a:hover, #userinfo_minor:hover:before, #userinfo_minor:hover a:hover, #userinfo_username:hover a:hover {
+    background-color: hsla(0, 0%, 100%, .25)
+}
+
+#menu>ul a:hover, #userinfo_minor:hover a, #userinfo_username:hover a {
+    color: #f7f7f7
+}
+
+#userinfo_minor:hover:before {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-image: url(https://raw.githubusercontent.com/NightByteOtaku/CSS/main/assets/menu.svg);
+    background-size: 30px;
+    background-origin: padding-box;
+    background-clip: border-box
+}
+
+.sidebar {
+    order: 5
+}
+
+.thin:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -4px
+}
+
+/* Search bars */
+#searchbars>ul {
+    align-items: center;
+    background-color: #cdd0d0;
+    display: flex;
+    height: 50px;
+    padding: 0 9px
+}
+
+#searchbars>ul li {
+    flex: 1 1 auto;
+    margin-right: 9px
+}
+
+#searchbars>ul li:last-child {
+    margin-right: 0
+}
+
+#searchbars>ul input {
+    width: 100%
+}
+
+#searchbars .search_form {
+    background: 0 0
+}
+
+#searchbars .search_form input {
+    border: none;
+    border-radius: 2.5px;
+    height: 30px;
+    background: #d9dbdb
+}
+
+#searchbars .search_form input:focus {
+    background: #e1e3e4
+}
+
+.linkbox, .linkbox .center {
+    text-align: right
+}
+
+.linkbox br {
+    display: block;
+    line-height: 4px
+}
+
+.linkbox>strong {
+    color: #388a38
+}
+
+.linkbox .brackets:after, .linkbox .brackets:before {
+    display: none
+}
+
+#noty_bottomRight_layout_container {
+    bottom: 24px !important;
+    right: 24px !important
+}
+
+#noty_bottomRight_layout_container>li {
+    background: 0 0 !important;
+    border: 2px solid #388a38 !important;
+    border-radius: 1px !important
+}
+
+@media screen and (prefers-reduced-motion:no-preference) {
+    #noty_bottomRight_layout_container {
+        box-shadow: 0 10px 18px rgba(0, 0, 0, .25), 0 7px 7px rgba(0, 0, 0, .22);
+        transition: all .25s cubic-bezier(.25, .8, .25, 1)
+    }
+
+    #noty_bottomRight_layout_container:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22);
+        transform: translateY(-3.5px)
+    }
+}
+
+#noty_bottomRight_layout_container .noty_message {
+    background: linear-gradient(to right, #1a5a1a, #1f621f, #246a24, #297229, #2e7a2e, #338233, #388a38) !important;
+    color: #f7f7f7 !important;
+    font-weight: 700;
+    padding: .6rem !important
+}
+
+#noty_bottomRight_layout_container .noty_message .noty_text {
+    line-height: 1.1rem !important
+}
+
+#noty_bottomRight_layout_container .noty_buttons {
+    background-color: #000 !important;
+    border: none !important;
+    padding: .4rem !important
+}
+
+#noty_bottomRight_layout_container .noty_buttons a {
+    background-color: none;
+    color: #ffffff !important;  /* White for maximum visibility on black background */
+    border: thin solid transparent;
+    border-radius: 14px;
+    padding: 0 6px
+}
+
+@media screen and (prefers-reduced-motion:no-preference) {
+    #noty_bottomRight_layout_container .noty_buttons a {
+        transition: all .6s cubic-bezier(.25, .8, .25, 1)
+    }
+}
+
+#noty_bottomRight_layout_container .noty_buttons a:hover {
+    background-color: #388a38;
+    color: #f7f7f7 !important;
+    border: thin solid #388a38;
+    border-radius: 14px
+}
+
+@media screen and (prefers-reduced-motion:no-preference) {
+    #noty_bottomRight_layout_container .noty_buttons a:hover {
+        transition: all .15s cubic-bezier(.25, .8, .25, 1)
+    }
+}
+
+.sidebar .pad ol, .sidebar .pad ul {
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 0
+}
+
+.sidebar ol.nobullet, .sidebar ul.nobullet {
+    padding-left: 0
+}
+
+.sidebar img {
+    height: auto;
+    width: auto
+}
+
+#musicbrainz_popup {
+    color: #313131;
+    background: #d0d2d2;
+    border: #388a38;
+    padding: 1rem;
+    font-weight: 600
+}
+
+#musicbrainz_popup a {
+    color: #154a73
+}
+
+#musicbrainz_popup a:hover {
+    color: #388a38
+}
+
+#musicbrainz_popup .brackets {
+    font-weight: 400
+}
+
+#musicbrainz_popup #popup_close {
+    color: #313131
+}
+
+/* =====================================================
+   ALERT MESSAGES
+   ===================================================== */
+.alertbar, .save_message, .sys_error {
+    border: thick solid #388a38;
+    padding: 1rem 1rem 1rem 48px;
+    background-color: #d9dbdb;
+    background-image: url(/svg/site/ops-icon-harp-ccc.svg);
+    background-repeat: no-repeat;
+    background-position: 8px;
+    background-size: 32px;
+    color: #313131 !important;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 8px;
+    text-align: center
+}
+
+.alertbar a {
+    color: #154a73 !important
+}
+
+.error_message {
+    border: thick solid #eb1943;
+    padding: 1rem 1rem 1rem 48px;
+    background-color: #f5d0d0;
+    background-image: url(/svg/site/ops-icon-triangle-ccc.svg);
+    background-repeat: no-repeat;
+    background-position: 8px;
+    background-size: 32px;
+    color: #313131 !important;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 8px;
+    text-align: center
+}
+
+.error_message a {
+    color: #154a73 !important
+}
+
+@media screen and (prefers-reduced-motion:no-preference) {
+    @keyframes fx-borderpop-bad {
+        0% {
+            border: thick solid #f9e340
+        }
+
+        70% {
+            border: thick solid #fe8aa2
+        }
+
+        to {
+            border: thick solid #eb1943
+        }
+    }
+
+    @keyframes fx-borderpop-good {
+        0% {
+            border: thick solid #099909
+        }
+
+        70% {
+            border: thick solid #388a38
+        }
+
+        to {
+            border: thick solid #388a38
+        }
+    }
+
+    .save_message {
+        animation-name: fx-borderpop-good;
+        animation-duration: 1.5s
+    }
+
+    .error_message {
+        animation-name: fx-borderpop-bad;
+        animation-duration: 1.5s
+    }
+}
+
+.upload-error, ul#check.nobullet>* {
+    border: thick solid #daa520;
+    padding: 1rem 1rem 1rem 48px;
+    background: #eaebeb;
+    background-image: url(/svg/site/ops-icon-triangle-000.svg);
+    background-repeat: no-repeat;
+    background-position: 8px;
+    background-size: 32px
+}
+
+.upload-error a, ul#check.nobullet>* a {
+    color: #b71010 !important;
+    -webkit-text-decoration-line: underline;
+    text-decoration-line: underline
+}
+
+.upload-error a:after, ul#check.nobullet>* a:after {
+    content: "\2197\FE0E"
+}
+
+.upload-error, .upload-error *, ul#check.nobullet *, ul#check.nobullet>* {
+    color: #000 !important;
+    font-size: 12px;
+    font-weight: 700
+}
+
+.upload-error:after, ul#check:after {
+    content: "Warning!  There were one or more errors in your submission. Check below for error messages.";
+    font-weight: 700;
+    position: absolute;
+    top: 64px;
+    left: 50vw;
+    transform: translateX(-50%);
+    z-index: 900;
+    color: #000;
+    border: thick solid #daa520;
+    border-radius: .25rem;
+    padding: 1rem 1rem 1rem 48px;
+    background-color: #eaebeb;
+    background-image: url(/svg/site/ops-icon-triangle-000.svg);
+    background-repeat: no-repeat;
+    background-position: 8px;
+    background-size: 32px;
+    box-shadow: 0 10px 18px rgba(0, 0, 0, .55), 0 7px 7px rgba(0, 0, 0, .52), 0 -5px 9px rgba(0, 0, 0, .32)
+}
+
+.permission_head {
+    width: 400px
+}
+
+.permission_head, .permissions {
+    margin-left: auto;
+    margin-right: auto
+}
+
+.permissions {
+    width: min(1200px, 95%);
+    display: flex;
+    flex-flow: row wrap
+}
+
+.permission_container {
+    float: left;
+    padding: 5px;
+    width: 300px
+}
+
+.permission_container input {
+    margin: 0 3px 5px 0;
+    vertical-align: top
+}
+
+.submit_container {
+    clear: both;
+    text-align: right
+}
+
+.toolbox_container {
+    padding: 5px;
+    flex: 1 1 auto;
+    flex-basis: 30ch
+}
+
+.toolbox_container tr.colhead {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0
+}
+
+@media(max-width:575px) {
+    #dnulist tr.colhead, .toolbox_container tr.colhead {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 32px;
+        font-size: 120%;
+        font-weight: 700
+    }
+
+    /* Top 10/100/250 pages - mobile label prefix */
+    #top10 .td_size:before {
+        content: "Size: "
+    }
+
+    /* Top 10/100/250 pages - mobile tags width */
+    #top10 .tags {
+        width: auto
+    }
+}
+
+.autocomplete-suggestions {
+    margin-top: 5px;
+    background: #d0d2d2 !important;
+    color: #5f5f5f;
+    width: auto !important;
+    text-align: left;
+    cursor: default;
+    border: 1px solid #388a38;
+    border-top-style: dashed;
+    box-shadow: 3px 3px 9px rgba(0, 0, 0, .3) !important;
+    position: absolute;
+    display: none;
+    z-index: 800;
+    max-height: min(80vw, 254px);
+    overflow: hidden;
+    overflow-y: auto;
+    box-sizing: border-box
+}
+
+.autocomplete-suggestions .autocomplete-suggestion {
+    cursor: pointer;
+    position: relative;
+    padding: 0 6px;
+    line-height: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #313131 !important
+}
+
+.autocomplete-suggestions .autocomplete-suggestion strong {
+    font-weight: 400;
+    color: #154a73 !important
+}
+
+.autocomplete-suggestions .autocomplete-suggestion.autocomplete-selected {
+    background-color: hsla(0, 0%, 100%, .25) !important
+}
+
+#footer p:last-of-type:after {
+    content: " | Cornflower Unified CSS"
+}
+
+/* Hack fix for hiding badges taken from the official site CSS */
+.hidden {
+    left: -10000px;
+    position: absolute;
+}
+.hidden,
+input.hidden {
+    display: none;
+}
+
+
+/* =====================================================
+   UNIFIED CONTENT LINK HOVER SYSTEM
+   =====================================================
+   
+   Two behaviors:
+   
+   STANDARD PATTERN (links on light backgrounds):
+   - On hover: Blue background (#388a38) + white text (#f7f7f7)
+   - Used for: pagination, most content links, data rows
+   
+   INVERTED PATTERN (links on dark/colored backgrounds):
+   - On hover: White background (#f7f7f7) + blue text (#388a38)
+   - Used for: colhead_dark rows, menu areas, post headers
+   
+   ===================================================== */
+
+/* ---- STANDARD HOVER: Light bg content links ---- */
+
+/* Base padding for all content links (prevents layout shift) */
+.linkbox a:not(.tags a):not([class*="tag"]),
+.thin a:not(.tags a):not([class*="tag"]):not(.colhead_dark a):not(.colhead a):not(table.forum_post a):not(.box_artists a):not(.torrentdetails a):not(.head a) {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+/* Standard hover effect */
+.linkbox a:not(.tags a):not([class*="tag"]):hover,
+.thin a:not(.tags a):not([class*="tag"]):not(.colhead_dark a):not(.colhead a):not(table.forum_post a):not(.box_artists a):not(.torrentdetails a):not(.head a):hover {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+    text-decoration: none !important;
+}
+
+/* Standard hover for strong elements inside links */
+.linkbox a:not(.tags a):not([class*="tag"]):hover strong,
+.thin a:not(.tags a):not([class*="tag"]):not(.colhead_dark a):not(.colhead a):not(table.forum_post a):not(.box_artists a):not(.torrentdetails a):not(.head a):hover strong {
+    color: #f7f7f7 !important;
+}
+
+
+/* ---- INVERTED HOVER: Dark bg links (colhead_dark, post headers, etc.) ---- */
+
+/* All links in colhead_dark rows - GLOBAL rule for any table/container
+   Covers: torrent tables (↑ Albums), forum posts, collage tables, etc.
+   Uses INVERTED pattern (white bg, blue text) since row has colored background */
+tr.colhead_dark td a,
+.colhead_dark a {
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+    display: inline-block !important;
+}
+
+tr.colhead_dark td a:hover,
+.colhead_dark a:hover {
+    background-color: #f7f7f7 !important;
+    color: #388a38 !important;
+    text-decoration: none !important;
+}
+
+/* Artist sidebar links - standard pattern (blue bg, white text) */
+.box_artists ul.stats a {
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+    display: inline-block !important;
+}
+
+.box_artists ul.stats a:hover {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+    text-decoration: none !important;
+}
+
+/* Torrent details links (View peer list, View file list) */
+.torrentdetails .linkbox a.brackets {
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+    display: inline-block !important;
+}
+
+.torrentdetails .linkbox a.brackets:hover {
+    background-color: #f7f7f7 !important;
+    color: #388a38 !important;
+    text-decoration: none !important;
+}
+
+/* Blockquote username link hover */
+.torrentdetails blockquote a {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.torrentdetails blockquote a:hover {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+    text-decoration: none !important;
+}
+
+/* Collage table links (up arrow, collage names) */
+table.collage_table td a {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+table.collage_table td a:hover {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+    text-decoration: none !important;
+}
+
+/* Box head links (Anthology info up arrow, etc.) */
+.box .head a {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.box .head a:hover {
+    background-color: #f7f7f7 !important;
+    color: #388a38 !important;
+    text-decoration: none !important;
+}
+
+
+/* ---- Forum-specific adjustments ---- */
+
+/* Forum last read arrow hover */
+.last_topic:has(a:hover) ~ .last_read :before {
+    color: #f7f7f7 !important;
+}
+
+.last_read a:hover::before,
+.last_read:has(a:hover) :before {
+    color: #f7f7f7 !important;
+}
+
+/* View Forums page - post header link hover effects */
+table.forum_post.wrap_overflow tr.colhead_dark a {
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+    display: inline-block !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+table.forum_post.wrap_overflow tr.colhead_dark a:hover {
+    background-color: #f7f7f7 !important;
+    color: #388a38 !important;
+    text-decoration: none !important;
+    z-index: 10 !important;
+}
+
+
+/* ---- Pagination links ---- */
+
+.linkbox a,
+.linkbox a strong {
+    padding: 1px 0 1px 1px;
+    border-radius: 3px;
+    display: inline-block;
+    transition: all 0.2s ease;
+}
+
+
+/* ---- Header/Menu links (use white text, no background change needed) ---- */
+
+/* All links inside hovered userinfo containers stay white */
+#userinfo_minor:hover a,
+#userinfo_username:hover a {
+    color: #f7f7f7 !important;
+}
+
+/* Keep username link white when directly hovered */
+#userinfo_username:hover a.username:hover {
+    color: #f7f7f7 !important;
+}
+
+/* Keep menu links white when hovered */
+#menu ul li a:hover,
+#menu > ul a:hover {
+    color: #f7f7f7 !important;
+}
+
+/* Userinfo dropdown hover - subtle white overlay like REDstage for dropdown items */
+#userinfo_minor:hover a:not(.username):hover,
+#userinfo_username:hover a:not(.username):hover {
+    color: #f7f7f7 !important;
+    background-color: hsla(0, 0%, 100%, .25) !important;
+}
+
+/* Artist page - jump navigation links (Albums, EPs, Compilations, etc.) 
+   Uses INVERTED pattern: colored background by default → white background on hover */
+body#artist #discog_table > div.box.center a.brackets {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+    color: #f7f7f7 !important;
+    background-color: #388a38 !important;
+}
+
+body#artist #discog_table > div.box.center a.brackets:hover {
+    background-color: #f7f7f7 !important;
+    color: #388a38 !important;
+    text-decoration: none !important;
+}
+
+/* ---- Header links hover effects ---- */
+
+/* Upload, Invite, Donate, Staff links - add padding by default to prevent shift */
+#userinfo_major a {
+    padding: 2px 3px 3px 3px !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+}
+
+#userinfo_major a:hover {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+}
+
+/* Up, Down, Ratio, Required links - add padding by default to prevent shift */
+#userinfo_stats a {
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+}
+
+#userinfo_stats a:hover {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+}
+
+/* Staff link - make transparent to match other header links, not menu gradient */
+#menu>ul>#nav_staff,
+#menu>ul>#nav_staff>a {
+    background-color: transparent !important;
+    background: none !important;
+    color: #154a73 !important;
+}
+
+/* ---- (View) link hover effect in colhead_dark rows ---- */
+/* Uses INVERTED pattern (white bg, colored text) since link is on dark colhead_dark row */
+table.torrent_table tr.colhead_dark td a[onclick*="gtoggle"] {
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+    display: inline-block !important;
+}
+
+table.torrent_table tr.colhead_dark td a[onclick*="gtoggle"]:hover {
+    background-color: #f7f7f7 !important;
+    color: #388a38 !important;
+    text-decoration: none !important;
+}
+
+/* ---- Column header icons (snatches, seeders, leechers) - make white ---- */
+/* Red PNG icons need filter to display as white on blue colhead_dark rows */
+.colhead .sign img,
+.colhead_dark .sign img,
+tr.colhead td.sign img,
+tr.colhead_dark td.sign img,
+.sign.snatches img,
+.sign.seeders img,
+.sign.leechers img {
+    filter: brightness(0) invert(1) !important;
+}
+
+/* ---- Center Size/Snatches/Seeders/Leechers columns globally ---- */
+/* Column headers */
+.colhead td.sign,
+.colhead_dark td.sign,
+tr.colhead td.sign.snatches,
+tr.colhead td.sign.seeders,
+tr.colhead td.sign.leechers,
+tr.colhead_dark td.sign.snatches,
+tr.colhead_dark td.sign.seeders,
+tr.colhead_dark td.sign.leechers {
+    text-align: center !important;
+}
+
+/* Data cells - Size and number columns for snatches/seeders/leechers
+   GLOBAL RULE: Centers all number_column cells across all pages
+   Multiple selectors for maximum specificity over global.css .number_column { text-align: right } rule */
+.number_column {
+    text-align: center !important;
+}
+td.number_column {
+    text-align: center !important;
+}
+tr td.number_column {
+    text-align: center !important;
+}
+tr td.number_column.nobr {
+    text-align: center !important;
+}
+.torrent_table td.number_column {
+    text-align: center !important;
+}
+.torrent_table tr td.number_column {
+    text-align: center !important;
+}
+.torrent_table tr td.number_column.nobr {
+    text-align: center !important;
+}
+
+/* Size column HEADER - has no class, must target by position
+   Different table types have Size at different positions:
+   - release_table/grouped: Size is 3rd child (after small + 70% width columns)
+   - details: Size is 2nd child (after 80% width column) */
+.torrent_table.release_table tr.colhead_dark td:nth-child(3),
+.torrent_table.grouped tr.colhead_dark td:nth-child(3),
+.torrent_table.details tr.colhead_dark td:nth-child(2) {
+    text-align: center !important;
+}
+
+/* =====================================================
+   Collage table and Anthology info up arrow hover effects
+   GLOBAL RULE: Works on any page with collage_table or torrent_description
+   ===================================================== */
+/* Collage table links - base styling */
+table.collage_table td a {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+/* Collage table links hover - standard pattern for data rows */
+table.collage_table td a:hover {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+    text-decoration: none !important;
+}
+
+/* Collage table - up arrow in colhead row needs INVERTED pattern for visibility on colored row */
+table.collage_table tr.colhead td a:hover {
+    background-color: #f7f7f7 !important;
+    color: #388a38 !important;
+    text-decoration: none !important;
+}
+
+/* Anthology info section up arrow hover (appears in .box.torrent_description .head) */
+.box.torrent_description .head a {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.box.torrent_description .head a:hover {
+    background-color: #f7f7f7 !important;
+    color: #388a38 !important;
+    text-decoration: none !important;
+}
+
+/* =====================================================
+   Pagination / Linkbox hover effects
+   GLOBAL RULE: Works on all pages with .linkbox pagination
+   ===================================================== */
+/* Current page indicator */
+.linkbox > strong {
+    color: #388a38 !important;
+}
+
+/* Pagination links - base styling */
+.linkbox a,
+.linkbox a strong {
+    color: #154a73 !important;
+    padding: 1px 0;
+    border-radius: 3px;
+    display: inline-block;
+    transition: all 0.2s ease;
+}
+
+/* Pagination links - hover: blue background, white text */
+.linkbox a:hover,
+.linkbox a:hover strong {
+    color: #f7f7f7 !important;
+    background-color: #388a38 !important;
+}
+
+/* Remove background from inner strong on hover - only apply to the link itself */
+.linkbox a:hover strong {
+    background-color: transparent !important;
+}
+
+/* =====================================================
+   Browse Torrents page - center Files, Time, Size columns in header
+   GLOBAL RULE: Uses .torrent_table:not(.details):not(.release_table) to target
+   browse torrent tables specifically (not artist release tables or detail pages)
+   ===================================================== */
+.torrent_table:not(.details):not(.release_table) tr.colhead td:nth-child(4),
+.torrent_table:not(.details):not(.release_table) tr.colhead td:nth-child(5),
+.torrent_table:not(.details):not(.release_table) tr.colhead td:nth-child(6) {
+    text-align: center !important;
+}
+
+/* =====================================================
+   "Last edited by" username link hover
+   GLOBAL RULE: Works on any page with .last_edited span containing username link
+   ===================================================== */
+.last_edited a {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.last_edited a:hover {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+    text-decoration: none !important;
+}
+
+/* =====================================================
+   Fix checkbox and label vertical alignment
+   GLOBAL RULE: Works on Browse Torrents category list and any search forms
+   ===================================================== */
+.cat_list input[type="checkbox"],
+.ft_cat_list input[type="checkbox"] {
+    vertical-align: text-bottom !important;
+}
+
+.cat_list label,
+.ft_cat_list label {
+    vertical-align: text-bottom !important;
+}
+
+.search_form input[type="checkbox"] {
+    vertical-align: text-bottom !important;
+}
+
+.search_form input[type="checkbox"] + label,
+.search_form label[for*="cat"] {
+    vertical-align: text-bottom !important;
+}
+
+/* Global checkbox alignment for all forms (including Manage Notifications) */
+input[type="checkbox"] {
+    vertical-align: text-bottom !important;
+}
+
+input[type="checkbox"] + label,
+label + input[type="checkbox"] + label {
+    vertical-align: text-bottom !important;
+}
+
+/* =====================================================
+   Browse Collages - Center Updated and Author columns
+   GLOBAL RULE: Works on collage table listing pages
+   Columns: Category(1), Collage(2), Torrents(3), Subscribers(4), Updated(5), Author(6)
+   ===================================================== */
+.collage_table td:nth-child(5),
+.collage_table td:nth-child(6) {
+    text-align: center !important;
+}
+
+/* =====================================================
+   Wiki article body links - ensure proper styling
+   GLOBAL RULE: Links inside wiki_article should be blue with no underline
+   NOTE: Must also override inline styles from BBCode [u] tags
+   ===================================================== */
+.wiki_article a,
+.wiki_article a span {
+    color: #154a73 !important;
+    text-decoration: none !important;
+}
+
+/* Override inline underline from BBCode [u] tags */
+.wiki_article a span[style*="underline"],
+.wiki_article span[style*="underline"] {
+    text-decoration: none !important;
+}
+
+.wiki_article a:hover,
+.wiki_article a:hover span {
+    color: #f7f7f7 !important;
+    background-color: #388a38 !important;
+    padding: 2px 4px;
+    border-radius: 3px;
+    text-decoration: none !important;
+}
+
+/* Remove duplicate background on inner span */
+.wiki_article a:hover span {
+    background-color: transparent !important;
+    padding: 0;
+}
+
+/* =====================================================
+   Upload Page DNU List - Blue header with alternating rows
+   GLOBAL RULE: Works on #dnulist table (Do Not Upload list)
+   ===================================================== */
+table#dnulist tr.colhead {
+    background-color: #388a38 !important;
+}
+
+table#dnulist tr.colhead td,
+table#dnulist tr.colhead td strong {
+    color: #f7f7f7 !important;
+    font-weight: bold !important;
+}
+
+#dnulist tr:not(.colhead) {
+    background-color: #d9dbdb !important;
+}
+
+#dnulist tr:not(.colhead):nth-child(even) {
+    background-color: #cfd1d1 !important;
+}
+
+/* DNU list links hover effects (wiki.php, internal_url, etc.) */
+#dnulist td a {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+#dnulist td a:hover {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+    text-decoration: none !important;
+}
+
+/* =====================================================
+   Radio button and checkbox vertical alignment
+   GLOBAL RULE: Works on all forms with radio buttons
+   ===================================================== */
+input[type="radio"] {
+    vertical-align: middle !important;
+}
+
+input[type="radio"] + label {
+    vertical-align: middle !important;
+}
+
+/* =====================================================
+   User Uploaded Torrents page - Center Time column
+   GLOBAL RULE: Uses .torrent_table.cats for user uploads listing
+   EXCLUDES: .numbering (Top 10/100/250 pages have different column structure)
+   Columns: Category(1), Torrent(2), Time(3), Size(4), Snatches(5), Seeders(6), Leechers(7)
+   ===================================================== */
+.torrent_table.cats:not(.numbering) tr.colhead td:nth-child(3),
+.torrent_table.cats:not(.numbering) tr:not(.colhead):not(.group) td:nth-child(3) {
+    text-align: center !important;
+}
+
+/* =====================================================
+   Requests page - Center all numeric/status columns
+   GLOBAL RULE: Works on #request_table
+   Columns after Request(1): Vote(2), Bounty(3), Filled(4), Filled by(5), Requested by(6), Created(7), Last vote(8)
+   ===================================================== */
+#request_table tr.colhead_dark td:nth-child(n+2),
+#request_table tr:not(.colhead_dark) td:nth-child(n+2) {
+    text-align: center !important;
+}
+
+/* =====================================================
+   Post History page - (New!) text styling
+   PAGE-SPECIFIC RULE: Make (New!) text red for visibility
+   ===================================================== */
+body#userhistory span.new {
+    color: #cc3333 !important;
+    font-weight: bold !important;
+}
+
+/* =====================================================
+   Post History page - Last read arrow styling
+   GLOBAL RULE: Arrow should be white on colored row, invert on hover
+   ===================================================== */
+body#userhistory .last_read :before {
+    color: #f7f7f7 !important;
+    font-weight: bold !important;
+}
+
+/* Invert when hovering thread link */
+body#userhistory .last_topic:has(a:hover) ~ .last_read :before {
+    color: #388a38 !important;
+}
+
+/* Invert when hovering arrow directly */
+body#userhistory .last_read a:hover::before,
+body#userhistory .last_read:has(a:hover) :before {
+    color: #388a38 !important;
+}
+
+/* Post history hover - arrow background turns white on hover */
+body#userhistory .last_read a {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+body#userhistory .last_read a:hover {
+    background-color: #f7f7f7 !important;
+}
+
+/* =====================================================
+   Forums page - Center Topics and Posts columns
+   GLOBAL RULE: Works on .forum_index table
+   Columns: (icon)(1), Forum(2), Last Post(3), Topics(4), Posts(5)
+   ===================================================== */
+.forum_index td:nth-child(4),
+.forum_index td:nth-child(5) {
+    text-align: center !important;
+}
+
+/* =====================================================
+   Invites page - Header link inverted hover
+   GLOBAL RULE: Works on body#user .box.pad table tr.colhead
+   Links on colored colhead row need white bg + dark text on hover
+   ===================================================== */
+body#user .box.pad table tr.colhead td a {
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+    display: inline-block !important;
+}
+
+body#user .box.pad table tr.colhead td a:hover {
+    background-color: #f7f7f7 !important;
+    color: #388a38 !important;
+    text-decoration: none !important;
+}
+
+/* =====================================================
+   Top 10/100/250 pages - Static positioning for DL and Bookmark links
+   GLOBAL RULE: Works on body#top10 (used by Top 10, Top 100, and Top 250)
+   
+   KEY BEHAVIOR: DL and Bookmark are positioned at bottom-right of the cell,
+   vertically aligned with adjacent Size column data. Artist-album text
+   uses full width without wrapping constraints.
+   ===================================================== */
+body#top10 .torrent_table .big_info {
+    position: relative;
+}
+
+body#top10 .torrent_table .group_info {
+    position: relative;
+    line-height: 1.4;
+    /* Prevent premature wrapping - keep full line width available */
+    word-break: normal !important;  /* Override global break-all */
+    overflow-wrap: normal;          /* Do not force earlier wraps */
+    white-space: normal;            /* Allow normal wrapping at spaces */
+    hyphens: none;
+    text-wrap: balance;             /* Reduce "widow" single-word last lines (modern browsers) */
+    padding-bottom: 18px;           /* Reserve VERTICAL space for bottom-right DL/Bookmark controls */
+}
+
+body#top10 .torrent_table .group_info .tags {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 8px !important;
+}
+
+body#top10 .torrent_table .torrent_action_buttons {
+    position: absolute !important;
+    bottom: 0;
+    right: 70px;
+    margin: 0 !important;
+}
+
+body#top10 .torrent_table .add_bookmark {
+    position: absolute !important;
+    bottom: 0;
+    right: 0;
+    float: none !important;
+    margin: 0 !important;
+}
+
+/* =====================================================
+   TOP 10/100/250 PAGES - Link Hover Effects
+   ===================================================== */
+/* Header navigation links (Torrents, History, Last.fm, Users, Tags, Favorites, Donors)
+   and option links (Current year(s), Hide freeleech, Hide staff picks, Show top groups) */
+body#top10 .linkbox a.brackets {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+body#top10 .linkbox a.brackets strong {
+    color: inherit;
+}
+
+body#top10 .linkbox a.brackets:hover {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+    text-decoration: none !important;
+}
+
+body#top10 .linkbox a.brackets:hover strong {
+    color: #f7f7f7 !important;
+}
+
+/* Quantity links (Top 10, Top 100, Top 250) */
+body#top10 .top10_quantity_links a.brackets {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+body#top10 .top10_quantity_links a.brackets:hover {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+    text-decoration: none !important;
+}
+
+/* Torrent list links (artist names, album titles) */
+body#top10 .torrent_table .big_info a {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+body#top10 .torrent_table .big_info a:hover {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+    text-decoration: none !important;
+}
+
+/* DL and Bookmark links */
+body#top10 .torrent_table .button_dl,
+body#top10 .torrent_table .add_bookmark a.brackets {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+body#top10 .torrent_table .button_dl:hover,
+body#top10 .torrent_table .add_bookmark a.brackets:hover {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+    text-decoration: none !important;
+}
+
+/* =====================================================
+   Forum Post Body Links - Links inside post content
+   GLOBAL RULE: Links in blockquotes, external links, etc.
+   ===================================================== */
+
+/* Forum post body links (inside .body td) */
+table.forum_post td.body a {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+table.forum_post td.body a:hover {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+    text-decoration: none !important;
+}
+
+/* =====================================================
+   Forums Sub-page - Arrow styling (body#forums)
+   GLOBAL RULE: Arrow should stay BLUE, not white
+   Different from Post History page which has colored row bg
+   ===================================================== */
+
+/* Forums page arrow - stays blue (light bg row) */
+body#forums .last_read :before {
+    color: #154a73 !important;
+}
+
+/* Arrow turns white on hover (when link gets blue bg) */
+body#forums .last_read a:hover::before {
+    color: #f7f7f7 !important;
+}
+
+/* When hovering the topic link, arrow should NOT change */
+body#forums .last_topic a {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+body#forums .last_topic a:hover {
+    background-color: #388a38 !important;
+    color: #f7f7f7 !important;
+    text-decoration: none !important;
+}
+
+/* Arrow link hover */
+body#forums .last_read a {
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+body#forums .last_read a:hover {
+    background-color: #388a38 !important;
+}
+
+/* =====================================================
+   Forum SVG Icons - Color filter for visibility
+   GLOBAL RULE: Make gray SVGs visible with color filter
+   Targets: document.svg, lock.svg, pin.svg, etc.
+   ===================================================== */
+
+.read,
+.unread,
+.read_locked,
+.unread_locked,
+.read_sticky,
+.unread_sticky,
+.read_locked_sticky,
+.unread_locked_sticky {
+    filter: brightness(0) saturate(100%) invert(24%) sepia(82%) saturate(1051%) hue-rotate(90deg) brightness(95%) contrast(95%);
+}
